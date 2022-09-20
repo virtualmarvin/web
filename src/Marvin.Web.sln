@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marvin.Web", "Marvin.Web\Marvin.Web\Marvin.Web.csproj", "{AC724760-4213-489D-A2BA-E332DF4FFA6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marvin.Web.Test", "Marvin.Web.Test\Marvin.Web.Test.csproj", "{1CE1C0B3-82A3-439C-AABE-89482B5D8CBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AC724760-4213-489D-A2BA-E332DF4FFA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC724760-4213-489D-A2BA-E332DF4FFA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC724760-4213-489D-A2BA-E332DF4FFA6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE1C0B3-82A3-439C-AABE-89482B5D8CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE1C0B3-82A3-439C-AABE-89482B5D8CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE1C0B3-82A3-439C-AABE-89482B5D8CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE1C0B3-82A3-439C-AABE-89482B5D8CBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
