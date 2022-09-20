@@ -1,0 +1,9 @@
+﻿
+<div class="d-flex">
+    <ul class="nav nav-admin">
+        <li class='nav-item'><a class='nav-link @(ViewBag.AdminMenu == "Overview" ? "active" : "")' href="/admin">OVERVIEW</a></li>
+        <li class='nav-item'><a class='nav-link @(ViewBag.AdminMenu == "Users" ? "active" : "")' href="/admin/users">USERS</a></li>
+        <li class='nav-item'><a class='nav-link @(ViewBag.AdminMenu == "Logins" ? "active" : "")' href="/admin/logins">LOGINS</a></li>
+        <li class='nav-item'><a class='nav-link @(ViewBag.AdminMenu == "Errors" ? "active" : "")' href="/admin/errors">ERRORS</a></li>
+    </ul>
+</div>

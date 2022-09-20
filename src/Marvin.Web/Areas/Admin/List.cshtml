@@ -1,0 +1,51 @@
+﻿@model Marvin.Web.Areas.Admin.List
+@{
+    ViewBag.Title = "Admin";
+}
+
+<div class="page-box">
+
+    <div class="d-flex">
+        <div class="page-box-icon">
+            <a href="/admin"><i class="@Cache.AdminIcon"></i></a> Admin
+        </div>
+        <div class="page-box-admin-menu">
+            <partial name="_AdminMenu" />
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-12 col-sm-6">
+
+        <div class="pl-40">
+            <div class="py-20">Database Tables &amp; record counts</div>
+            
+            <table class="table table-hover table-sm">
+                @foreach (var item in @Model!.Items)
+                {
+                    <tr>
+                        <td class="width-70"><a href="@item.Url"><i class='@item.Icon'></i></a></td>
+                        <td class="pt-13"><a class="table-list-link" href="@item.Url">@item.Name</a></td>
+                        <td class="pt-13">@item.Count</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+
+        <div class="p-20 bg-light my-15 my-30 height-300">
+            <div class="pt-10">
+                <a class="btn btn-light btn-sm width-70" href="/admin/rollup">Start</a> &nbsp;&nbsp;&nbsp;Rollup All Fields
+            </div>
+            <div class="pt-15">
+                <a class="btn btn-light btn-sm width-70" href="/admin/clearcache" >Clear</a> &nbsp;&nbsp;&nbsp;Clear all Caches
+            </div>
+        </div>
+    </div>
+</div>
+<div class="height-60"></div>

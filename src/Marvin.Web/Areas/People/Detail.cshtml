@@ -1,0 +1,57 @@
+﻿@model Marvin.Web.Areas.People.Detail
+@{
+    ViewBag.Title = "Details on " + Model!.Name;
+}
+
+<div class="page-box">
+
+    <div class="d-flex">
+        <div class="page-box-icon">
+            <a href="/people"><i class="@Cache.PeopleIcon"></i></a> @Model.Name
+        </div>
+
+        <div class="ms-auto page-box-new-button-top">
+            <a class="btn btn-sm btn-light" href="mailto:@(Model.Email)">Send Email</a>
+        </div>
+    </div>
+</div>
+
+<div class="row p-40 pl-80">
+
+    <div class="col-12 col-sm-6">
+        <outputField value="Name" label="Person Name"></outputField>
+        <outputField value="Alias"></outputField>
+        <outputField value="Email"></outputField>
+        <outputField value="EmployeeNumber" label="Employee #"></outputField>
+        <outputField value="Department"></outputField>
+        <outputField value="City"></outputField>
+        <outputField value="Country"></outputField>
+        <outputField value="Role"></outputField>
+        <outputField value="LastLoginDate" label="Last Login"></outputField>
+    </div>
+
+    <div class="col-12 col-sm-6">
+        <outputField value="TotalThingsA" label="# Things A"></outputField>
+        <outputField value="TotalThingsB" label="# Things B"></outputField>
+        <outputField value="TotalThingsC" label="# Things C"></outputField>
+        <outputField value="TotalThingsD" label="# Things D"></outputField>
+        <outputField value="TotalThingsE" label="# Things E"></outputField>
+    </div>
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+    {
+    <script>
+
+        $(function () {
+
+        });
+
+    </script>
+}

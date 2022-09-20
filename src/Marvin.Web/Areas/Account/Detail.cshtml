@@ -1,0 +1,56 @@
+﻿@model Marvin.Web.Areas.Account.Detail
+@{
+    ViewBag.Title = "My Account";
+}
+
+<div class="page-box d-flex">
+    <div class="">
+        <div class="page-box-icon"><i class="@Cache.AdminIcon"></i> My Account</div>
+        <div class="page-box-name">@CurrentUser.FirstName @CurrentUser.LastName</div>
+    </div>
+    <div class="ms-auto">
+        <div class="page-box-buttons">
+            <a class="btn btn-light btn-sm" href="/account/edit">Edit</a>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+
+<div class="tabs">
+    <br />
+    <ul class="nav nav-tabs nav-tabs-related">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#details">Details</a></li>
+    </ul>
+</div>
+
+<div class="tab-pane" id="details">
+    <div class="tab-pane-row row">
+
+        <div class="col-12 col-sm-6">
+            <outputField value="FirstName"></outputField>
+            <outputField value="LastName"></outputField>
+            <outputField value="Alias"></outputField>
+            <outputField value="Email"></outputField>
+        </div>
+
+        <div class="col-12 col-sm-6">
+
+            <outputField value="City"></outputField>
+            <outputField value="Country"></outputField>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label text-end">Password</label>
+                <div class="col-sm-8 d-flex">
+                    <div class="pt-4 pr-30 font-18">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</div>
+                    <div class=""><a class="btn btn-sm btn-light" href="/account/password">Change</a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+

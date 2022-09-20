@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+<div class="width-400 m-auto mt-140 p-30 bg-light border rounded">
+
+    <h3>Error</h3>
+    <p class="pt-10">
+        Sorry, it seems an error has occurred. The issue 
+        has been logged and will be reviewed shortly. <br /><br />
+
+        In the meantime, try navigating to our <br />
+        @if (CurrentUser.IsAuthenticated)
+        {
+            <a class="underline" href="/home">Home page</a>
+        }
+        else
+        {
+            <a class="underline" href="/">Landing page</a>
+        }
+    </p>
+
+</div>

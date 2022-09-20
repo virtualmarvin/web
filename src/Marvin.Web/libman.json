@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "twitter-bootstrap@5.2.1",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "css/bootstrap.css",
+        "css/bootstrap.css.map",
+        "css/bootstrap.min.css",
+        "js/bootstrap.bundle.js",
+        "js/bootstrap.bundle.min.js",
+        "js/bootstrap.bundle.js.map"
+      ]
+    },
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/lib/bootstrap-datepicker/",
+      "files": [
+        "css/bootstrap-datepicker.css",
+        "css/bootstrap-datepicker.css.map",
+        "js/bootstrap-datepicker.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery@3.6.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "jquery.min.js",
+        "jquery.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-validate@1.19.5",
+      "destination": "wwwroot/lib/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js",
+        "jquery.validate.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
+      "files": [
+        "jquery.validate.unobtrusive.min.js",
+        "jquery.validate.unobtrusive.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "typeahead.js@0.11.1",
+      "destination": "wwwroot/lib/typeahead.js/",
+      "files": [
+        "typeahead.bundle.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "handlebars.js@4.7.7",
+      "destination": "wwwroot/lib/handlebars.js/",
+      "files": [
+        "handlebars.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "simple-line-icons@2.5.5",
+      "destination": "wwwroot/lib/simple-line-icons/",
+      "files": [
+        "fonts/Simple-Line-Icons.eot",
+        "fonts/Simple-Line-Icons.svg",
+        "fonts/Simple-Line-Icons.ttf",
+        "fonts/Simple-Line-Icons.woff",
+        "fonts/Simple-Line-Icons.woff2",
+        "css/simple-line-icons.css",
+      ]
+    }
+  ]
+}

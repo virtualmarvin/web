@@ -1,0 +1,122 @@
+﻿@model Marvin.Web.Areas.ThingsD.Import
+@{
+    ViewBag.Title = "Import Things D";
+}
+
+<div class="page-box">
+    <div class="page-box-icon"><a href="/thingsd"><i class="@Cache.ThingDIcon"></i></a> Import Things D</div>
+</div>
+
+<div class="row stepped-progress">
+
+    <div class='col stepped-progress-step complete'>
+        <div class="text-center stepped-progress-stepnum">Step 1</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="javascript:void(0);" class="stepped-progress-dot"></a>
+        <div class="stepped-progress-info text-center">Upload Excel File</div>
+    </div>
+
+    <div class='col stepped-progress-step @(Model!.Step == 2 || Model.Step == 3 ? "complete" : "disabled")'>
+        <div class="text-center stepped-progress-stepnum">Step 2</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="javascript:void(0);" class="stepped-progress-dot"></a>
+        <div class="stepped-progress-info text-center">Preview and Accept</div>
+    </div>
+
+    <div class='col stepped-progress-step @(Model.Step == 3 ? "complete" : "disabled")'>
+        <div class="text-center stepped-progress-stepnum">Step 3</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="javascript:void(0);" class="stepped-progress-dot"></a>
+        <div class="stepped-progress-info text-center">Import Complete</div>
+    </div>
+
+</div>
+
+@if (Model.Step == 1)
+{
+
+    <div class="pt-23 pl-110 pb-180">
+        <form method="post" enctype="multipart/form-data" asp-antiforgery="true">
+            <span class="btn btn-dark position-relative mt-0 fileinput-button" style="overflow: hidden;">
+                <span> Select Excel File </span>
+                <input id="itemupload" type="file" name="file">
+            </span>
+            &nbsp;&nbsp;&nbsp;<img id="image-loader" style="display:none;" src="/img/ajax-loader.gif" />
+        </form>
+    </div>
+}
+
+@if (Model.Step == 2)
+{
+    <div class="pt-40 pb-180">
+        <form method="post" action="/thingsd/import/go" asp-antiforgery="true">
+
+            <input type="hidden" asp-for="FileName" />
+
+            <div class="text-center pb-25">
+                <input type="submit" class="btn btn-dark" value='Accept' />&nbsp;&nbsp;
+                <a class="btn btn-light" href="/thingsd/import">Cancel</a>
+            </div>
+        </form>
+
+
+        @if (Model.Grid.Rows.Count == 0)
+        {
+            <div class="height-20 bg-light mt-22">
+                No records found
+            </div>
+        }
+        else
+        {
+
+            <table class="table table-list table-sm table-hover">
+                <tr>
+                    @foreach (var header in Model.Grid.Headers)
+                    {
+                        <th>
+                            @header
+                        </th>
+                    }
+                </tr>
+
+                @foreach (var row in Model.Grid.Rows)
+                {
+                    <tr>
+                        @foreach (var header in Model.Grid.Headers)
+                        {
+                            <td>@(row.ContainsKey(header) ? row[header] : "")</td>
+                        }
+                    </tr>
+                }
+            </table>
+        }
+
+    </div>
+}
+
+@if (Model.Step == 3)
+{
+    <div class="text-center pt-20 pb-180">
+        @Model.Result
+        <div class="py-20">
+            <a href="/thingsd">View imported records</a>
+        </div>
+    </div>
+}
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+    {
+    <script>
+
+        $(function () {
+
+            Dofactory.Utils.Import.start();
+
+        });
+    </script>
+}

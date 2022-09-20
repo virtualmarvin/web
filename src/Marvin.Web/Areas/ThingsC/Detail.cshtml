@@ -1,0 +1,78 @@
+﻿@model Marvin.Web.Areas.ThingsC.Detail
+@{ 
+    ViewBag.Title = "Thing C Detail";
+    string thingsa = $"<span class='tab-badge'>{Model!.TotalThingsA}</span>";
+}
+
+<div class="page-box d-flex">
+
+    <div>
+        <div class="page-box-icon"><a href="/thingsc"><i class="@Cache.ThingCIcon"></i></a> Thing C</div>
+        <div class="page-box-name">@Model.Name</div>
+    </div>
+
+    <div class="d-flex">
+        <div class="page-box-data-first">Text<br />@Model.Text</div>
+        <div class="page-box-data">Status<br />@Model.Status</div>
+        <div class="page-box-data">Lookup<br />@Model.Lookup</div>
+        <div class="page-box-data-last">Integer<br />@Model.Integer</div>
+    </div>
+    <div class="ms-auto">
+        <div class="page-box-buttons">
+            <a class="btn btn-sm btn-light js-edit" href="/thingsc/edit/@Model.Id">Edit</a>
+            <a class="btn btn-sm btn-light js-delete" href="/thingsc/delete" data-return-url="/thingsc" data-id="@Model.Id" 
+               data-dependencies="@Model.TotalThingsA">Delete</a>
+        </div>
+    </div>
+</div>
+
+<div class="tabs">
+    <ul class="nav nav-tabs nav-tabs-related">
+        <li class='nav-item'><a class='nav-link @(Model.Tab == "details" ? "active" : "")' data-bs-toggle="tab" href="#details">Details</a></li>
+        <li class='nav-item'><a class='nav-link @(Model.Tab == "thingsa" ? "active" : "")' data-bs-toggle="tab" href="#thingsa">Things A@(Html.Raw(thingsa))</a></li>
+    </ul>
+</div>
+
+<div class="tab-content">
+
+    <div class='tab-pane @(Model.Tab == "details" ? "active" : "")' id="details">
+        <div class="tab-pane-row row">
+
+            <div class="col-12 col-md-6">
+                <outputLink value="OwnerId" name="OwnerName" type="Owner" label="Thing C Owner"></outputLink>
+                <outputField value="Name"></outputField>
+                <outputCheckBox value="Boolean"></outputCheckBox>
+                <outputField value="Lookup"></outputField>
+                <outputField value="Status"></outputField>
+
+            </div>
+
+            <div class="col-12 col-md-6">
+                <outputField value="DateTime" label="Date Time"></outputField>
+                <outputField value="Text"></outputField>
+                <outputField value="LongText"></outputField>
+                <outputField value="Money" label="Money"></outputField>
+                <outputField value="Integer"></outputField>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tab-pane @(Model.Tab == "thingsa" ? "active" : "")" id="thingsa">
+        <partial name="_ThingA" model="Model.ThingsA" />
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+    {
+    <script>
+        $(function () {
+
+        });
+    </script>
+}

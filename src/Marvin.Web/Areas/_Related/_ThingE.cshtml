@@ -1,0 +1,53 @@
+﻿@model Marvin.Web.Areas._Related._ThingsE
+
+<div class="d-flex related-header">
+    <div class="related-icon"><i class="@Cache.ThingEIcon"></i></div>
+    <div class="related-text">Things E</div>
+    <div class="related-viewall">
+        @if (Model!.TotalThingsE > 4)
+        {
+            <a href="/thingse?AdvancedFilter=True&@Model!.ParentIdName=@Model.ParentId">View All</a>
+        }
+    </div>
+
+    <div class="ms-auto related-new"><a class="btn btn-sm btn-light" href="/thingse/edit?@(Model.ParentIdName)Id=@(Model.ParentId)&@(Model.ParentIdName)Name=@(Model.ParentName)"> New </a></div>
+</div>
+
+<div class="related-items">
+    @if (Model.ThingsE.Count == 0)
+    {
+        @:No related Thing E items
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model.ThingsE)
+            {
+                <div class="col-3 related-item">
+                    <div class="pb-5"><a class="underline" href="/thingse/@item.Id?tab=details">@item.Name</a></div>
+                    <table class="table-related">
+
+                        <tr>
+                            <td class="w-30">Lookup</td>
+                            <td class="w-70">@item.Lookup</td>
+                        </tr>
+                        <tr>
+                            <td>Money</td>
+                            <td>@item.Money</td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td>@item.Date</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="py-15">
+                                <a class="btn btn-xs btn-light" href="/thingse/edit/@item.Id">Edit</a>&nbsp;
+                                <a class="btn btn-xs btn-light js-delete" href="/thingse/delete" data-id="@item.Id">Delete</a>&nbsp; &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
+    }
+</div>

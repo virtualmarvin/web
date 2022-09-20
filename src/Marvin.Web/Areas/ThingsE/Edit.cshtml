@@ -1,0 +1,84 @@
+﻿@model Marvin.Web.Areas.ThingsE.Edit
+@{
+    var title = Model!.Id == 0 ? "New Thing E" : "Edit: " + Model.Name;
+    ViewBag.Title = title;
+}
+
+<form method="post" asp-antiforgery="true">
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Referer" />
+
+    <div class="page-box">
+        <div class="page-box-icon"><a href="/thingse"><i class="@Cache.ThingEIcon"></i></a> Thing E</div>
+        <div class="page-box-name">@title</div>
+    </div>
+
+    <div class="edit-pane">
+        <div class="row edit-pane-row ">
+
+            <div class="col-12 col-md-6">
+                @if (Model.Id == 0)
+                {
+                    <outputField value="OwnerName" label="Owner"></outputField>
+                    <input type="hidden" asp-for="OwnerId" />
+                }
+                else
+                {
+                    <inputSearch value="OwnerId" label="Owner" placeholder="Search People.."></inputSearch>
+                }
+
+                <inputTextBox value="Name" label="Thing E Name"></inputTextBox>
+                <inputSearch value="ThingAId" label="Thing A Name" placeholder="Search Things A.."></inputSearch>
+                <inputSearch value="ThingDId" label="Thing D Name" placeholder="Search Things D.."></inputSearch>
+                <inputCheckBox value="Boolean"></inputCheckBox>
+                <inputTextBox value="Integer"></inputTextBox>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <inputDateBox value="DateTime" label="Date"></inputDateBox>
+                <inputTextBox value="Money" label="Money $"></inputTextBox>
+                <inputTextBox value="Text"></inputTextBox>
+                <inputTextArea value="LongText"></inputTextArea>
+                <inputDropDown value="Lookup" items="@Lookup.ThingELookups"></inputDropDown>
+                <inputDropDown value="Status" items="@Lookup.ThingEStatuses"></inputDropDown>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="button-bar">
+        <input type="submit" class="btn btn-sm btn-light" value=' Save ' />&nbsp;&nbsp;
+        <a class="btn btn-sm btn-light" href="@Model.Referer">Cancel</a>
+    </div>
+
+</form>
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+    {
+    <script>
+
+        $(function () {
+
+            Dofactory.Utils.Typeahead.init("OwnerId", @Html.Raw(Typeahead.Owners));
+            Dofactory.Utils.Typeahead.init("ThingAId", @Html.Raw(Typeahead.ThingsA));
+            Dofactory.Utils.Typeahead.init("ThingDId", @Html.Raw(Typeahead.ThingsD));
+        });
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

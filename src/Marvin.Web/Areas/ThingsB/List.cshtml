@@ -1,0 +1,140 @@
+﻿@model Marvin.Web.Areas.ThingsB.List
+@{
+    ViewBag.Title = "Things B";
+    int index = 1;
+}
+
+<form>
+
+    <input asp-for="Page" type="hidden" />
+    <input asp-for="Sort" type="hidden" />
+    <input asp-for="AdvancedFilter" type="hidden" />
+
+    <div class="page-box">
+
+        <div class="d-flex">
+            <div class="page-box-icon">
+                <a href="/thingsb"><i class="@Cache.ThingBIcon"></i></a> Things B
+            </div>
+            <div class="ms-auto page-box-new-button-top">
+                <a class="btn btn-sm btn-light" href="/thingsb/edit"> New </a>&nbsp;
+                <a class="btn btn-sm btn-light" data-bs-toggle="tooltip" title="Import from Excel" href="/thingsb/import">Import</a>&nbsp;
+                <a class="btn btn-sm btn-light js-export" data-bs-toggle="tooltip" title="Export to Excel" href="/thingsb/export">Export</a>
+            </div>
+            <div class="btn-group filter-buttons" data-bs-toggle="buttons">
+                <button type="button" class='standard-toggle btn btn-sm btn-light @(Model!.AdvancedFilter ? "" : "active" )' title='Standard Filter'><img src="/img/list.svg" width="18" /></button>
+                <button type="button" class='advanced-toggle btn btn-sm btn-light @(Model.AdvancedFilter ? "active" : "" )' title='Advanced Filter'><img src="/img/filter.svg" width="18" /></button>
+            </div>
+        </div>
+
+        <div id="standard-filter" style='display:@(Model.AdvancedFilter ? "none" : "block")'>
+
+            <div class="d-flex">
+                <div class="page-box-filter">
+                    <select asp-for="Filter" asp-items="Filter.ThingBItems" class="form-select width-240"></select>
+                </div>
+                <div class=" page-box-items">@Model.TotalRows &nbsp;Items</div>
+            </div>
+
+        </div>
+
+
+        <div id="advanced-filter" style='display:@(Model.AdvancedFilter ? "block" : "none")'>
+
+            <div class="row mt-17">
+
+                <div class="col-4">
+                    <inputTextBox value="Name" label="Thing B Name"></inputTextBox>
+                </div>
+
+                <div class="col-4">
+                    <inputDropDown value="Lookup" items="Lookup.ThingBLookups"></inputDropDown>
+                </div>
+
+                <div class="col-4">
+                    <div class="page-box-items-advanced">@Model.TotalRows &nbsp;Items</div>
+                </div>
+            </div>
+
+
+            <div class="row mt-10 mb-15">
+
+                <div class="col-4">
+                    <inputDropDown value="Status" items="Lookup.ThingBStatuses"></inputDropDown>
+                </div>
+
+                <div class="col-4">
+                    <inputSearch value="OwnerId" label="Owner Name" placeholder="Search Users.."></inputSearch>
+                </div>
+
+                <div class="col-4">
+                    <div class="pt-5">
+                        <button class="btn btn-light btn-sm js-filter" type="submit"> Filter </button>&nbsp;
+                        <a href="/thingsb?AdvancedFilter=True" class="btn btn-light btn-sm"> Reset </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover table-sm table-list">
+        <tr class="bg-light">
+            <th class="width-50">&nbsp;</th>
+            <th><a sort="Name">Thing B Name</a></th>
+            <th><a sort="Text">Text</a></th>
+            <th><a sort="Money">Money</a></th>
+            <th><a sort="Lookup">Lookup</a></th>
+            <th><a sort="Status">Status</a></th>
+            <th class="width-40"><a data-bs-toggle="tooltip" title="Total Things A" sort="TotalThingsA">#A's</a></th>
+            <th><a sort="OwnerAlias">Owner</a></th>
+            <th>&nbsp;</th>
+        </tr>
+
+        @if (Model.Items.Count() == 0)
+        {
+            <tr><td colspan="9" class="no-items">No items to display</td></tr>
+        }
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td class="text-center">@(index++)</td>
+                <td><a class="table-list-link" href="/thingsb/@item.Id?tab=thingsa">@item.Name</a></td>
+                <td>@item.Text</td>
+                <td>@item.Money</td>
+                <td>@item.Lookup</td>
+                <td>@item.Status</td>
+                <td><aggregate value="item.TotalThingsA" href="/thingsa?AdvancedFilter=True&thingBid=@item.Id"></aggregate></td>
+                <td><a class="table-list-link" href="/people/@item.OwnerId">@item.OwnerAlias</a></td>
+                <td class='text-end'>
+                    <a class="btn btn-xs btn-light" href="/thingsb/edit/@item.Id">Edit</a>&nbsp;
+                    <a class="btn btn-xs btn-light js-delete" href="/thingsb/delete" data-id="@item.Id"
+                       data-dependencies="@item.TotalThingsA">Delete</a>&nbsp; &nbsp;
+                </td>
+
+            </tr>
+        }
+    </table>
+
+    <partial name="_Pager" />
+
+</form>
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+{
+    <script>
+
+        $(function () {
+
+            Dofactory.Utils.Typeahead.init("OwnerId", @Html.Raw(Typeahead.Owners));
+
+        });
+
+    </script>
+}
+

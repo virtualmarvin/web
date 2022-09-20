@@ -1,0 +1,49 @@
+﻿@model Marvin.Web.Areas.Account.Edit
+@{
+    ViewBag.Title = "Edit Account";
+}
+
+<div class="page-box d-flex">
+    <div class="">
+        <div class="page-box-icon"><a href="/account"><i class="@Cache.AdminIcon"></i></a></> My Account</div>
+        <div class="page-box-name">@CurrentUser.FirstName @CurrentUser.LastName </div>
+    </div>
+</div>
+
+<div class="edit-title-wrapper">
+    <div class="edit-title">Edit Account</div>
+</div>
+
+<form method="post" asp-antiforgery="true">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="edit-pane">
+        <div class="row edit-pane-row">
+
+            <div class="col-12 col-sm-5">
+                <inputTextBox value="FirstName" label="First Name"></inputTextBox>
+                <inputTextBox value="LastName" label="Last Name"></inputTextBox>
+                <inputTextBox value="Alias" label="Alias"></inputTextBox>
+                <inputTextBox value="Email" label="Email"></inputTextBox>
+            </div>
+
+            <div class="col-12 col-sm-7">
+                <inputTextBox value="City" label="City"></inputTextBox>
+                <inputTextBox value="Country" label="Country"></inputTextBox>
+            </div>
+
+        </div>
+    </div>
+    <div class="button-bar">
+        <input type="submit" class="btn btn-sm btn-light" value='Save' />&nbsp;
+        <a class="btn btn-sm btn-light" href="/account">Cancel</a>
+    </div>
+
+</form>
+
+<br />
+<br />
+<br />
+<br />
+

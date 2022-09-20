@@ -1,0 +1,155 @@
+﻿@model Marvin.Web.Areas.Home.List
+@{
+    ViewBag.Title = "Home";
+
+    int viewCount = 1;
+    int dealCount = 1;
+}
+
+<div class="page-box">
+    <div class="page-box-icon"> &nbsp;Dashboard</div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a class="no-underline" data-bs-toggle="tooltip" title="Click for Details" href="/thingsb?AdvancedFilter=True&Status=Bronze">
+            <div class="callout" style="background:#20A8D8;">
+                <div class="callout-stage">Bronze</div>
+                <div class="row callout-body">
+                    <div class="col-5 callout-amount">@Model!.BronzeAmount</div>
+                    <div class="col-7 text-end callout-items">@Model.BronzeCount Items</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+        <a class="no-underline" data-bs-toggle="tooltip" title="Click for Details" href="/thingsb?AdvancedFilter=True&Status=Silver">
+            <div class="callout" style="background:#63C2DE;">
+                <div class="callout-stage">Silver</div>
+                <div class="row callout-body">
+                    <div class="col-5 callout-amount">@Model.SilverAmount</div>
+                    <div class="col-7 text-end callout-items">@Model.SilverCount Items</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+        <a class="no-underline" data-bs-toggle="tooltip" title="Click for Details" href="/thingsb?AdvancedFilter=True&Status=Gold">
+            <div class="callout" style="background:#F8CB00;">
+                <div class="callout-stage">Gold</div>
+                <div class="row callout-body">
+                    <div class="col-5 callout-amount">@Model.GoldAmount</div>
+                    <div class="col-7 text-end callout-items">@Model.GoldCount Items</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+        <a class="no-underline" data-bs-toggle="tooltip" title="Click for Details" href="/thingsb?AdvancedFilter=True&Status=Platinum">
+            <div class="callout" style="background:#F86C6B;">
+                <div class="callout-stage">Platinum</div>
+                <div class="row callout-body">
+                    <div class="col-5 callout-amount">@Model.PlatinumAmount</div>
+                    <div class="col-7 text-end callout-items">@Model.PlatinumCount Items</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="row pt-20">
+
+    <div class="col-12 col-md-6">
+        <div class="py-7">Summary Chart</div>
+        <div class="ct-chart cross-hatched dashed"></div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="py-7">Summary Graphics</div>
+        <div class="ct-chart cross-hatched dashed"></div>
+    </div>
+
+</div>
+
+
+<div class="row pt-50">
+
+    <div class="col-12 col-md-6">
+        
+        <div class="py-7">Top Things A</div>
+
+        <table class="table table-sm table-hover">
+            @foreach (var item in Model.ThingsA)
+            {
+                <tr>
+                    <td class="width-50 font-20">
+                        @(dealCount).
+                    </td>
+                    <td class="py-5">
+                        <div><a class="table-list-link" href="/thingsa/@item.Id?tab=details">@item.Name</a></div>
+                        <div class="d-flex">
+                            <div class="width-150"><a class="table-list-link" href="/thingsb/@item.ThingBId?tab=details">@item.ThingBName</a></div>
+                            <div class="pr-30">@item.DateTime</div>
+                            <div class="">@item.Money</div>
+                        </div>
+                    </td>
+                </tr>
+
+                dealCount++;
+            }
+        </table>
+
+    </div>
+    <div class="col-12 col-md-6">
+
+        <div class="py-7">Recent Records</div>
+
+        <table class="table table-sm table-hover">
+            @foreach (var viewed in Model.Vieweds)
+            {
+
+                if (viewCount < 6)
+                {
+                    <tr>
+                        <td class="width-50">
+                            <a href="@viewed.Url"><i class="@viewed.Icon"></i></a>
+
+                        </td>
+                        <td class="pt-10">
+                            <a class="table-list-link" href="@viewed.Url">@viewed.Name</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2">
+                            <a href="/recents">View All</a>
+                        </td>
+                    </tr>
+                }
+                viewCount++;
+            }
+        </table>
+
+    </div>
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+    {
+    <script>
+
+        $(function () {
+
+
+        });
+
+    </script>
+}

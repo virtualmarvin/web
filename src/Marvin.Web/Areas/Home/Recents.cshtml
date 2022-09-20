@@ -1,0 +1,43 @@
+﻿@model Marvin.Web.Areas.Home.Recents
+@{
+    ViewBag.Title = "Recently Viewed Records";
+}
+
+<div class="page-box">
+    <div class="page-box-icon"> &nbsp;Recent Records</div>
+</div>
+
+<form>
+
+    <input asp-for="Page" type="hidden" />
+
+    <div class="p-8">@Model!.TotalRows &nbsp;Items</div>
+
+    <table class="table table-hover table-sm">
+        @if (Model.Items.Count() == 0)
+        {
+            <tr><td colspan="2" class="no-items">No items to display</td></tr>
+        }
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td class="width-50">
+                    <a href="@item.Url"><i class="@item.Icon"></i></a>
+
+                </td>
+                <td class="pt-10">
+                    <a href="@item.Url">@item.Name</a>
+                </td>
+            </tr>
+
+        }
+    </table>
+
+    <partial name="_Pager" />
+
+</form>
+
+<br />
+<br />
+

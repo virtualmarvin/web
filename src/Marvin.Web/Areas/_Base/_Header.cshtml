@@ -1,0 +1,76 @@
+﻿<div class="main-menu d-flex">
+
+    <div class="pt-10 px-15">
+        <img src="~/img/cloud.png" style="height:25px;" />
+    </div>
+
+    <div class="">
+        <ul class="nav nav-menu">
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "Home" ? "active" : "")' href="/home">Home</a></li>
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "ThingsA" ? "active" : "")' href="/thingsa">Things A</a></li>
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "ThingsB" ? "active" : "")' href="/thingsb">Things B</a></li>
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "ThingsC" ? "active" : "")' href="/thingsc">Things C</a></li>
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "ThingsD" ? "active" : "")' href="/thingsd">Things D</a></li>
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "ThingsE" ? "active" : "")' href="/thingse">Things E</a></li>
+            <li class='nav-item'><a class='nav-link @(ViewBag.Menu == "People" ? "active" : "")' href="/people">People</a></li>
+        </ul>
+    </div>
+
+    <div class="ms-auto d-flex" >
+
+        <div class="pt-11 pr-15">
+            <div class="dropdown">
+                <a class="no-underline" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <span class="action-circle ml-40">
+                        <i class="text-white font-15 icon-plus"></i>
+                    </span>&nbsp;
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item" href="/thingsa/edit">New Thing A</a>
+                    <a class="dropdown-item" href="/thingsb/edit">New Thing B</a>
+                    <a class="dropdown-item" href="/thingsc/edit">New Thing C</a>
+                    <a class="dropdown-item" href="/thingsd/edit">New Thing D</a>
+                    <a class="dropdown-item" href="/thingse/edit">New Thing E</a>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            @if (CurrentUser.IsAdmin)
+            {
+                <div class="pt-10">
+                    <a class="no-underline" href="/admin">
+                        <span class="action-circle">
+                            <i class="text-white font-15 icon-settings" title="Admin"></i>
+                        </span>&nbsp;
+                    </a>
+                </div>
+            }
+        </div>
+        <div>
+            <div class="dropdown mr-15">
+                <a class="no-underline avatar-wrapper" data-bs-toggle="dropdown" href="javascript:void(0);">
+                    <div class="action-circle mt-3">@CurrentUser.FirstLetter</div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item disabled pl-5" href="/account">
+                        <div class="d-flex">
+                            <div class="p-5 pr-10">
+                                <div class="avatar" style="background:#12538D;">@CurrentUser.FirstLetter</div>
+                            </div>
+                            <div>
+                                <div>@CurrentUser.Name</div>
+                                <div class="font-12">@CurrentUser.Email</div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/account">My Account</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

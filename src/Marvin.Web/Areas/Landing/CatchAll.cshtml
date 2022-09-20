@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Page Not Found";
+}
+
+<div class="width-400 m-auto mt-140 p-30 bg-light border rounded">
+
+    <h3>404 Page not found</h3>
+    <p class="pt-10">
+        Sorry, it seems that the requested page is not available. 
+        The good news is that we have many others to choose from. <br /><br />
+
+        You could start by navigating to our <br />
+        @if (CurrentUser.IsAuthenticated)
+        {
+            <a class="underline" href="/home">Home page</a>
+        }
+        else
+        {
+            <a class="underline" href="/">Landing page</a>
+        }
+    </p>
+
+</div>
+

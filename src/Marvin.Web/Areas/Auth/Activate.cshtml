@@ -1,0 +1,35 @@
+﻿@model Marvin.Web.Areas.Auth.Activate
+@{
+    ViewBag.Title = "Account Activation";
+}
+
+<div class="m-auto my-120 bg-light rounded p-25 width-500 border">
+
+    <form method="post">
+
+        <input type="hidden" asp-for="Cd" />
+
+        <h3>Account Activation</h3>
+
+        <p class="py-15 font-14">
+            Activate your account by choosing your password.
+            Passwords must be at least 8 characters long and contain
+            1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.
+        </p>
+
+        <div class="pt-15">
+            <input type="password" asp-for="NewPassword" class="form-control width-300" , placeholder="Password" />
+            <span asp-validation-for="NewPassword"></span>
+        </div>
+        <div class="pt-15">
+            <input type="password" asp-for="ConfirmPassword" class="form-control width-300" , placeholder="Confirm Password" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <div class="pt-15">
+            <input class="btn btn-sm btn-light" type="submit" value="Submit" />
+        </div>
+    </form>
+
+</div>
+
+

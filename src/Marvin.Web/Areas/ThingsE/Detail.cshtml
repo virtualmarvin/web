@@ -1,0 +1,74 @@
+﻿@model Marvin.Web.Areas.ThingsE.Detail
+@{ 
+    ViewBag.Title = "Thing E Detail";
+}
+
+<div class="page-box d-flex">
+
+    <div>
+        <div class="page-box-icon"><a href="/thingse"><i class="@Cache.ThingEIcon"></i></a> Thing E</div>
+        <div class="page-box-name">@Model!.Name</div>
+    </div>
+
+    <div class="d-flex">
+        <div class=" page-box-data-first">Thing A Name<br />@Model.ThingAName</div>
+        <div class=" page-box-data">Thing D Name<br />@Model.ThingDName</div>
+        <div class=" page-box-data-last">Lookup<br />@Model.Lookup</div>
+    </div>
+
+    <div class="ms-auto">
+        <div class="page-box-buttons">
+            <a class="btn btn-sm btn-light js-edit" href="/thingse/edit/@Model.Id">Edit</a>
+            <a class="btn btn-sm btn-light js-delete" href="/thingse/delete" data-return-url="/thingse" data-id="@Model.Id" >Delete</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="tabs">
+    <ul class="nav nav-tabs nav-tabs-related">
+        <li class='nav-item'><a class='nav-link active' data-bs-toggle="tab" href="#details">Details</a></li>
+    </ul>
+</div>
+
+<div class="tab-content">
+
+
+    <div class='tab-pane active' id="details">
+        <div class="tab-pane-row row">
+
+            <div class="col-12 col-md-6">
+                <outputLink value="OwnerId" name="OwnerName" type="Owner" label="Thing A Owner"></outputLink>
+                <outputField value="Name" label="Thing E Name"></outputField>
+                <outputLink value="ThingAId" name="ThingAName" type="ThingA" label="Thing A Name"></outputLink>
+                <outputLink value="ThingDId" name="ThingDName" type="ThingD" label="Thing D Name"></outputLink>
+                <outputCheckBox value="Boolean"></outputCheckBox>
+                <outputField value="Integer"></outputField>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <outputField value="DateTime" label="Date Time"></outputField>
+                <outputField value="Money" label="Money"></outputField>
+                <outputField value="Text"></outputField>
+                <outputField value="LongText"></outputField>
+                <outputField value="Lookup"></outputField>
+                <outputField value="Status"></outputField>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts
+    {
+    <script>
+        $(function () {
+
+        });
+    </script>
+}

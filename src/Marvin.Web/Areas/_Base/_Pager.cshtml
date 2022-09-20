@@ -1,0 +1,10 @@
+﻿@model PagedModel
+
+@if (Model!.TotalPages > 1)
+{
+    <div class="d-flex justify-content-center bg-light p-5">
+        <div class="pr-15"><a page="PrevPage" class='@(Model.HasPrevPage ? "" : "disabled")'>Prev</a></div>
+        <div class="pt-4 font-14">Page @Model.Page of @Model.TotalPages</div>
+        <div class="pl-15"><a page="NextPage" class='@(Model.HasNextPage ? "" : "disabled")'>Next</a></div>
+    </div>
+}
