@@ -19,6 +19,6 @@ dotnet user-secrets init
 Store the sensitive strings using the following
 
 ```cmd
-dotnet user-secrets set "Authentication:Google:ClientId" "979045484993-vrmqcf8m72dqcs6pu72pqbqs5gfre4qc.apps.googleusercontent.com"
-dotnet user-secrets set "Authentication:Google:ClientSecret" "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"
+dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
+dotnet user-secrets set "Authentication:Google:ClientSecret" "<secret>"
 ```
