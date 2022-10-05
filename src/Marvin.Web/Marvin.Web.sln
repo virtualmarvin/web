@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marvin.Web", "Marvin.Web.csproj", "{CC5F4F4D-BAD2-40B1-8F31-E6E1B54824F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDE932EE-C6E8-42C3-B073-5E692C3EDE47}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\README.md.txt = ..\..\README.md.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC5F4F4D-BAD2-40B1-8F31-E6E1B54824F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5F4F4D-BAD2-40B1-8F31-E6E1B54824F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5F4F4D-BAD2-40B1-8F31-E6E1B54824F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5F4F4D-BAD2-40B1-8F31-E6E1B54824F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E82188B-7CF9-45FD-B187-E147E0432A26}
+	EndGlobalSection
+EndGlobal

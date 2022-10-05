@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace Dofactory.Ultra.Data.Migrations
+namespace Marvin.Web.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

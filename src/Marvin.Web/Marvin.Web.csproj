@@ -4,19 +4,17 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-Marvin.Web-1BD0F176-954F-49B5-B1B2-0CA0ED517ABD</UserSecretsId>
+    <UserSecretsId>aspnet-Marvin.Web-66A9FA95-08D7-46AC-B7D6-F6507920D087</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
 </Project>
