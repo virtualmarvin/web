@@ -2,8 +2,6 @@
 
 ## Getting Started
 
-- Create a new SQL Server database and call it `Marvin`
-- Then run the CreateDb.txt script file
-  - This will create and populate several Thing tables
-
-Now run the application!
+1. Build `Ctrl+F5` 🏗
+2. Migrate `update-database` 📅
+3. Hit F5 🚀
