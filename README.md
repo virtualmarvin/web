@@ -2,8 +2,16 @@
 
 ## Getting Started
 
-- Create a new SQL Server database and call it `Marvin`
-- Then run the CreateDb.txt script file
-  - This will create and populate several Thing tables
+## Adding the user secretes
 
-Now run the application!
+To use Google and Facebook login you need to ensure the secrets are added
+
+### Facebook Secrets
+
+dotnet user-secrets set "Authentication:Facebook:AppId" "appid"
+dotnet user-secrets set "Authentication:Facebook:AppSecret" "secret"
+
+### Google Secrets
+
+dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
+dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
