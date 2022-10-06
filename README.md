@@ -15,3 +15,8 @@ dotnet user-secrets set "Authentication:Facebook:AppSecret" "secret"
 
 dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
+=======
+1. Build `Ctrl+F5` 🏗
+2. Migrate `update-database` 📅
+3. Hit F5 🚀
+
