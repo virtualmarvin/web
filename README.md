@@ -23,3 +23,19 @@ dotnet user-secrets set "Authentication:Facebook:AppSecret" "secret"
 dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
 ```
+
+## Data
+
+## Postgres
+
+Tested with Postgres version for windows 14.5.1
+
+You'll have to remove any existing migration you did for MSSQL and then you can do this in the package manager:
+
+```powershell
+Add-Migration InitialPersistedGrantDbMigration -c ApplicationDbContext -o Data/Migrations
+
+update-database
+```
+
+Now run project and it will use postgres

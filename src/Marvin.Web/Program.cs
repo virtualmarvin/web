@@ -1,3 +1,4 @@
+using FuncSharp;
 using Marvin.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -5,10 +6,20 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+
+#region DatabaseSetup
+var usePostgres = builder.Configuration["UsePostgres"];
+var activeConnectionString = builder.Configuration["ActiveConnectionString"];
+var connectionString = builder.Configuration.GetConnectionString(activeConnectionString);
+
+activeConnectionString.Contains("PostgresConnection")
+    .Match(
+        t => builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)),
+        f => builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString))
+    );
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+#endregion
 
 #region IdentityAndAccessManagement
 builder.Services
