@@ -28,9 +28,15 @@ dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
 
 ## Data
 
+You can choose between *MSSQL* or *PostgreSQL* databases and both connection strings have entries in the `appsettings.json` file.   
+You can switch between the two by setting the `ActiveConnectionString` value to the name of the connection string that you want to use.
+
+Select `MssqlConnection` | `PostgresConnection` depending on which one you want to use.
+
+
 ## Postgres
 
-Tested with Postgres version for windows 14.5.1
+> Tested with Postgres version for windows 14.5.1
 
 You'll have to remove any existing migration you did for MSSQL and then you can do this in the package manager:
 
