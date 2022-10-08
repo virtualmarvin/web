@@ -6,6 +6,8 @@
 2. Migrate `update-database` 📅
 3. Hit F5 🚀
 
+To generate a migration script run Script-Migration
+
 ## Adding the user secretes
 
 To use Google and Facebook login you need to ensure the secrets are added
