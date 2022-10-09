@@ -1,5 +1,8 @@
 using FuncSharp;
+using HealthChecks.UI.Client;
 using Marvin.Web.Data;
+using Marvin.Web.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +43,15 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddRazorPages();
 
+builder.Services
+    .AddHealthChecksUI()
+    .AddInMemoryStorage();
+/*    .AddPostgreSqlStorage(connectionString);*/
+
+builder.Services.AddHealthChecks()
+    .AddNpgSql(connectionString, name: "Database")
+    .AddCheck<ExampleHealthCheck>("Example");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,11 +69,19 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseRouting()
+    .UseEndpoints(config => config.MapHealthChecksUI()); ;
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseHealthChecks("/status");
+
+app.UseHealthChecks("/healthchecks", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.Run();
