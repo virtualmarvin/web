@@ -2,7 +2,7 @@
 using Marvin.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Marvin.Web.Bootstrap
+namespace Marvin.Web.Code.Bootstrap
 {
     public static class Database
     {

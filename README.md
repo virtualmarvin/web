@@ -8,6 +8,29 @@
 
 To generate a migration script run Script-Migration
 
+## Project Structure
+
+The project follows a clean architecture design structure. You can see from the naming convention of the top level folders this gives us a nice easy structure to locate code quickly. `Areas - Code - Data - Domain`
+
+![clean-architecture.jpg](./docs/.img/clean-architecture.jpg)
+
+### Areas
+
+Areas hold the application and presentation models and views.
+
+### Code
+
+This is the infrastructure layer
+
+### Data
+
+This contains anything related to persistence
+
+### Domain
+
+The domain layer has its own folder self named. This contains the domain entities.
+
+
 ## Adding the user secretes
 
 To use Google and Facebook login you need to ensure the secrets are added

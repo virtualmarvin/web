@@ -1,7 +1,7 @@
 ﻿using FuncSharp;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Marvin.Web.HealthChecks
+namespace Marvin.Web.Code.HealthChecks
 {
     public class ExampleHealthCheck : IHealthCheck
     {
