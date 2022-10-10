@@ -1,28 +1,15 @@
-using FuncSharp;
 using HealthChecks.UI.Client;
+using Marvin.Web.Bootstrap;
 using Marvin.Web.Data;
 using Marvin.Web.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-#region DatabaseSetup
-var usePostgres = builder.Configuration["UsePostgres"];
-var activeConnectionString = builder.Configuration["ActiveConnectionString"];
-var connectionString = builder.Configuration.GetConnectionString(activeConnectionString);
-
-activeConnectionString.Contains("PostgresConnection")
-    .Match(
-        t => builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)),
-        f => builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString))
-    );
-
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-#endregion
+builder.AddDatabase();
 
 #region IdentityAndAccessManagement
 builder.Services
@@ -49,8 +36,7 @@ builder.Services
 /*    .AddPostgreSqlStorage(connectionString);*/
 
 builder.Services.AddHealthChecks()
-    .AddNpgSql(connectionString, name: "Database")
-    .AddCheck<ExampleHealthCheck>("Example");
+.AddCheck<ExampleHealthCheck>("Example");
 
 var app = builder.Build();
 
