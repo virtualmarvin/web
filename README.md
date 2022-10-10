@@ -47,3 +47,22 @@ update-database
 ```
 
 Now run project and it will use postgres
+
+## Health Checks
+
+You can access the local health check endpoint on `https://localhost:7292/HealthChecks-UI`, this will be available over the internet for development.
+
+There are three new endpoints for health check
+* `https://localhost:7292/HealthChecks-Api`, this is used by the UI
+* `https://localhost:7292/HealthChecks`, this is the Json output of the healthcheck and it collated by the API endpoint
+* `https://localhost:7292/Status`, this is a simple Healthy, Degraded or Unhealthy status of the site
+
+Within the application code there is now a HealthChecks folder with an Example Health check this is configured as below along with a PostgreSQL health Check
+
+```
+builder.Services.AddHealthChecks()
+    .AddNpgSql(connectionString, name: "Database")
+    .AddCheck<ExampleHealthCheck>("Example");
+```
+
+For more information on Health Check UI see the GitHub repository [https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)

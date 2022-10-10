@@ -1,25 +1,15 @@
-using FuncSharp;
+using HealthChecks.UI.Client;
+using Marvin.Web.Bootstrap;
 using Marvin.Web.Data;
+using Marvin.Web.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-#region DatabaseSetup
-var usePostgres = builder.Configuration["UsePostgres"];
-var activeConnectionString = builder.Configuration["ActiveConnectionString"];
-var connectionString = builder.Configuration.GetConnectionString(activeConnectionString);
-
-activeConnectionString.Contains("PostgresConnection")
-    .Match(
-        t => builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)),
-        f => builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString))
-    );
-
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-#endregion
+builder.AddDatabase();
 
 #region IdentityAndAccessManagement
 builder.Services
@@ -40,6 +30,14 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddRazorPages();
 
+builder.Services
+    .AddHealthChecksUI()
+    .AddInMemoryStorage();
+/*    .AddPostgreSqlStorage(connectionString);*/
+
+builder.Services.AddHealthChecks()
+.AddCheck<ExampleHealthCheck>("Example");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,11 +55,19 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseRouting()
+    .UseEndpoints(config => config.MapHealthChecksUI()); ;
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseHealthChecks("/status");
+
+app.UseHealthChecks("/healthchecks", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.Run();
