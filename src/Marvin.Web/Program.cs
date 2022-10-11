@@ -1,7 +1,7 @@
 using HealthChecks.UI.Client;
-using Marvin.Web.Bootstrap;
+using Marvin.Web.Code.Bootstrap;
+using Marvin.Web.Code.HealthChecks;
 using Marvin.Web.Data;
-using Marvin.Web.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 
@@ -55,8 +55,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting()
-    .UseEndpoints(config => config.MapHealthChecksUI()); ;
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -69,5 +68,7 @@ app.UseHealthChecks("/healthchecks", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+
+app.MapHealthChecksUI();
 
 app.Run();
