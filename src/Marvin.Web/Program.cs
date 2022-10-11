@@ -4,12 +4,18 @@ using Marvin.Web.Code.HealthChecks;
 using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.AddDatabase();
+
+builder.Host.UseSerilog((ctx, lc) => 
+    lc.WriteTo.Console()
+    .ReadFrom.Configuration(ctx.Configuration)
+    );
 
 #region IdentityAndAccessManagement
 builder.Services
