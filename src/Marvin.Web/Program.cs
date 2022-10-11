@@ -13,8 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddDatabase();
 
 builder.Host.UseSerilog((ctx, lc) => 
-    lc.WriteTo.Console()
-    .ReadFrom.Configuration(ctx.Configuration)
+    lc.ReadFrom.Configuration(ctx.Configuration)
     );
 
 #region IdentityAndAccessManagement
@@ -76,5 +75,7 @@ app.UseHealthChecks("/healthchecks", new HealthCheckOptions
 });
 
 app.MapHealthChecksUI();
+
+app.UseSerilogRequestLogging();
 
 app.Run();
