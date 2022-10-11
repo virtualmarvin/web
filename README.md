@@ -89,3 +89,9 @@ builder.Services.AddHealthChecks()
 ```
 
 For more information on Health Check UI see the GitHub repository [https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
+
+## Logging
+
+Serilog is used as the logging and enriching framework, this is configured using the application settings and by default only logs to the Console
+
+A helpful article on logging can be found on [https://benfoster.io/blog/serilog-best-practices/](https://benfoster.io/blog/serilog-best-practices/)
