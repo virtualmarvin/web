@@ -21,7 +21,7 @@ builder.Host.UseSerilog((ctx, lc) =>
 #region IdentityAndAccessManagement
 builder.Services
     .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<IamDbContext>();
 
 builder.Services.AddAuthentication()
     .AddGoogle(googleOptions =>
