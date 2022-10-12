@@ -1,4 +1,5 @@
 using HealthChecks.UI.Client;
+using Marvin.Web;
 using Marvin.Web.Code.Bootstrap;
 using Marvin.Web.Code.HealthChecks;
 using Marvin.Web.Code.Swagger;
@@ -6,6 +7,7 @@ using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,9 +48,24 @@ builder.Services.AddAuthentication()
         facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
         facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
     });
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = new PathString("/login");
+    options.SlidingExpiration = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+});
+
 #endregion
 
-builder.Services.AddRazorPages();
+builder.Services
+.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+
+})
+.AddFlatAreas(new FlatAreaOptions())
+.AddRazorRuntimeCompilation();
 
 builder.Services
     .AddHealthChecksUI()
@@ -57,6 +74,8 @@ builder.Services
 
 builder.Services.AddHealthChecks()
 .AddCheck<ExampleHealthCheck>("Example");
+
+
 
 var app = builder.Build();
 
@@ -91,6 +110,11 @@ app.UseSwagger();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseEndpoints(ep =>
+{
+    ep.MapAreaControllerRoute(areaName: "Landing", name: "default", pattern: "{controller=Landing}/{action=Index}/{id?}");
+});
 
 app.MapRazorPages();
 
