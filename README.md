@@ -95,3 +95,22 @@ For more information on Health Check UI see the GitHub repository [https://githu
 Serilog is used as the logging and enriching framework, this is configured using the application settings and by default only logs to the Console
 
 A helpful article on logging can be found on [https://benfoster.io/blog/serilog-best-practices/](https://benfoster.io/blog/serilog-best-practices/)
+
+## Open API
+
+The `Swashbuckle.AspNetCore` package is used to deliver Open API specifications and the `Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer` NuGet is used to generate the version information. 
+
+Controllers can be decorated with various attributes to aid in the generation of Open API documentation:
+* `ApiVersionAttribute` - is used on the Controller to denote the version of that controller.
+* `ProducesAttribute` - is used on a method to define the data type, for example `"application/json"` for JSON formatted data.
+* `ProducesResponseTypeAttribute` - is used on methods to denote the HTTP response codes supported as well as the object returned.
+
+XML comments on the Controller Class, Controller Methods, Model Class and Model Properties are used to document what the classes are used for and their functions.  
+
+This is enabled on the Properties page of the Project under the *Output* check the *Documentation file box* and enter the path `bin\$(Configuration)\$(TargetFramework)\$(MSBuildThisFileName).xml` for the auto generated xml document.
+
+![vs-documentation-properties.pngpng](./docs/.img/vs-documentation-properties.png)
+
+More information of documenting can be found in the following Microsoft articles
+* https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/xmldoc/recommended-tags
+* https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/compiler-options/output
