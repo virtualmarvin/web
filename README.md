@@ -98,7 +98,7 @@ A helpful article on logging can be found on [https://benfoster.io/blog/serilog-
 
 ## Open API
 
-The Swashbuckle can be found `/Swagger/index.html`
+The Swashbuckle UI can be found at `/Swagger/index.html` and the JSON data can be found at `/swagger/v0.9/swagger.json`
 
 The `Swashbuckle.AspNetCore` package is used to deliver Open API specifications and the `Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer` NuGet is used to generate the version information. 
 
