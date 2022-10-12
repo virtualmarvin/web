@@ -6,11 +6,14 @@ using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.AddSwagger();
 
 builder.AddDatabase();
 
@@ -80,6 +83,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.ConfigureSwagger();
 
 app.UseAuthentication();
 app.UseAuthorization();
