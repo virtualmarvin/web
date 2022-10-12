@@ -24,14 +24,14 @@ namespace Marvin.Web.Code.Bootstrap
 
         private static WebApplicationBuilder AddPostgreSql(this WebApplicationBuilder builder, string connectionString)
         {
-            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+            builder.Services.AddDbContext<IamDbContext>(options => options.UseNpgsql(connectionString));
             builder.Services.AddHealthChecks().AddNpgSql(connectionString, name: "Database");
             return builder;
         }
 
         private static WebApplicationBuilder AddSqlServer(this WebApplicationBuilder builder, string connectionString)
         {
-            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<IamDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddHealthChecks().AddSqlServer(connectionString, name: "Database");
             return builder;
         }

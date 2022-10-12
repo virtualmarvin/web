@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Marvin.Web.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(IamDbContext))]
     [Migration("20221007163025_InitialPersistedGrantDbMigration")]
     partial class InitialPersistedGrantDbMigration
     {

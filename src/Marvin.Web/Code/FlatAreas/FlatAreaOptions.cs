@@ -7,7 +7,7 @@ namespace Marvin.Web
     /// <summary>
     /// Options to control the behavior of feature folders
     /// </summary>
-    public class FlatAreaOptions
+    public sealed class FlatAreaOptions
     {
         public FlatAreaOptions()
         {

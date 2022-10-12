@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Marvin.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class IamDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public IamDbContext(DbContextOptions<IamDbContext> options)
             : base(options)
         {
         }
