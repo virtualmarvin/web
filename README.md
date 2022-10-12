@@ -73,12 +73,12 @@ Now run project and it will use postgres
 
 ## Health Checks
 
-You can access the local health check endpoint on `https://localhost:7292/HealthChecks-UI`, this will be available over the internet for development.
+You can access the local health check endpoint on `/HealthChecks-UI`, this will be available over the internet for development.
 
 There are three new endpoints for health check
-* `https://localhost:7292/HealthChecks-Api`, this is used by the UI
-* `https://localhost:7292/HealthChecks`, this is the Json output of the healthcheck and it collated by the API endpoint
-* `https://localhost:7292/Status`, this is a simple Healthy, Degraded or Unhealthy status of the site
+* `/HealthChecks-Api`, this is used by the UI
+* `/HealthChecks`, this is the Json output of the healthcheck and it collated by the API endpoint
+* `/Status`, this is a simple Healthy, Degraded or Unhealthy status of the site
 
 Within the application code there is now a HealthChecks folder with an Example Health check this is configured as below along with a PostgreSQL health Check
 
@@ -98,6 +98,8 @@ A helpful article on logging can be found on [https://benfoster.io/blog/serilog-
 
 ## Open API
 
+The Swashbuckle can be found `/Swagger/index.html`
+
 The `Swashbuckle.AspNetCore` package is used to deliver Open API specifications and the `Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer` NuGet is used to generate the version information. 
 
 Controllers can be decorated with various attributes to aid in the generation of Open API documentation:
@@ -109,7 +111,7 @@ XML comments on the Controller Class, Controller Methods, Model Class and Model 
 
 This is enabled on the Properties page of the Project under the *Output* check the *Documentation file box* and enter the path `bin\$(Configuration)\$(TargetFramework)\$(MSBuildThisFileName).xml` for the auto generated xml document.
 
-![vs-documentation-properties.pngpng](./docs/.img/vs-documentation-properties.png)
+![vs-documentation-properties.png](./docs/.img/vs-documentation-properties.png)
 
 More information of documenting can be found in the following Microsoft articles
 * https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/xmldoc/recommended-tags
