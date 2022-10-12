@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace Marvin.Web
 {
-    public class FlatAreaExpander : IViewLocationExpander
+    public sealed class FlatAreaExpander : IViewLocationExpander
     {
         private readonly string _placeholder;
 

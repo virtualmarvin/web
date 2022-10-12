@@ -4,7 +4,7 @@
 
 namespace Marvin.Web
 {
-    public class FlatAreaConvention : IControllerModelConvention
+    public sealed class FlatAreaConvention : IControllerModelConvention
     {
         private readonly string _folderName;
         private readonly Func<ControllerModel, string> _nameDerivationStrategy;
