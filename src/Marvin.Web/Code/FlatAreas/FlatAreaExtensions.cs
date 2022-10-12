@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-
-// Modified from https://github.com/OdeToCode/AddFeatureFolders
+﻿// Modified from https://github.com/OdeToCode/AddFeatureFolders
 
 namespace Marvin.Web
 {
@@ -18,7 +15,7 @@ namespace Marvin.Web
             }
             if (options == null)
             {
-                throw new ArgumentException(nameof(options));
+                throw new ArgumentNullException(nameof(options));
             }
 
             var expander = new FlatAreaExpander(options);

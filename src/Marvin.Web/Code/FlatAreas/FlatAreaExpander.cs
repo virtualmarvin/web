@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Controllers;
+﻿using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Razor;
 
 // Modified from https://github.com/OdeToCode/AddFeatureFolders
@@ -13,7 +11,7 @@ namespace Marvin.Web
 
         public FlatAreaExpander(FlatAreaOptions options)
         {
-            _placeholder = options.AreaPlaceholder;
+            _placeholder = options?.AreaPlaceholder ?? throw new ArgumentNullException(nameof(options));
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)

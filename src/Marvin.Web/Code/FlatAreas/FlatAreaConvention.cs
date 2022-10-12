@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
+﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 // Modified from https://github.com/OdeToCode/AddFeatureFolders
 
@@ -14,6 +11,10 @@ namespace Marvin.Web
 
         public FlatAreaConvention(FlatAreaOptions options)
         {
+            if(options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
             _folderName = options.RootFolderName;
             _nameDerivationStrategy = options.DeriveFolderName ?? DeriveAreaFolderName;
         }
@@ -25,7 +26,7 @@ namespace Marvin.Web
                 throw new ArgumentNullException(nameof(controller));
             }
 
-            var areaName = _nameDerivationStrategy(controller);            
+            var areaName = _nameDerivationStrategy(controller);
             controller.Properties.Add("area", areaName);
         }
 
