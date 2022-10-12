@@ -2,30 +2,18 @@ using HealthChecks.UI.Client;
 using Marvin.Web;
 using Marvin.Web.Code.Bootstrap;
 using Marvin.Web.Code.HealthChecks;
-using Marvin.Web.Code.Swagger;
 using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-#region  OpenApiConfiguration
-builder.Services.AddApiVersioning(options => options.ReportApiVersions = true);
-/*builder.Services.AddSwaggerGen(
-                options =>
-                {
-                    // add a custom operation filter which sets default values
-                    options.OperationFilter<SwaggerDefaultValues>();
-
-                    // integrate xml comments
-                    options.IncludeXmlComments(XmlCommentsFilePath);
-                });*/
-#endregion  OpenApiConfiguration
+builder.AddSwagger();
 
 builder.AddDatabase();
 
@@ -96,17 +84,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-
-app.UseSwagger();
-/*app.UseSwaggerUI(
-    options =>
-    {
-        // build a swagger endpoint for each discovered API version
-        foreach (var description in provider.ApiVersionDescriptions)
-        {
-            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-        }
-    });*/
+app.ConfigureSwagger();
 
 app.UseAuthentication();
 app.UseAuthorization();

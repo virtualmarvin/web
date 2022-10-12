@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Marvin.Web.Code.Bootstrap
 {
-    public static class Database
+    internal static class Database
     {
-        public static WebApplicationBuilder AddDatabase(this WebApplicationBuilder builder)
+        internal static WebApplicationBuilder AddDatabase(this WebApplicationBuilder builder)
         {
             var activeConnectionString = builder.Configuration["ActiveConnectionString"];
             var connectionString = builder.Configuration.GetConnectionString(activeConnectionString);
