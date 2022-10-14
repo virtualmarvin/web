@@ -91,7 +91,7 @@ app.UseAuthorization();
 
 app.UseEndpoints(ep =>
 {
-    ep.MapAreaControllerRoute(areaName: "Landing", name: "default", pattern: "{controller=Landing}/{action=Index}/{id?}");
+    ep.MapAreaControllerRoute(areaName: "Landing", name: "default", pattern: "{area:exists}/{controller=Landing}/{action=Index}/{id?}");
 });
 
 app.MapRazorPages();
