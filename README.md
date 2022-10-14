@@ -116,3 +116,17 @@ This is enabled on the Properties page of the Project under the *Output* check t
 More information of documenting can be found in the following Microsoft articles
 * https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/xmldoc/recommended-tags
 * https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/compiler-options/output
+
+## Testing with Selenium IDE
+
+Get the Chrome Selenium IDE extension: [Selenium IDE](https://www.selenium.dev/selenium-ide/)
+
+Once this is installed you can record and create some basic front end tests. These can be used as smoke tests for the local environment.
+
+### Running the tests
+
+1. Fireup the local development environment
+2. Open the SeleniumIDE chrome extension
+3. Choose "Open an existing project" from the IDE
+4. Select the `Lifebuddy.side` test suite from `src\Marvin.Tests\SeleniumIDE`
+5. Run the tests, and you should see all green 😇
