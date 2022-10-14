@@ -1,5 +1,7 @@
 ﻿// Modified from https://github.com/OdeToCode/AddFeatureFolders
 
+using FuncSharp;
+
 namespace Marvin.Web
 {
     public static class FlatAreaExtensions
@@ -18,7 +20,7 @@ namespace Marvin.Web
                 throw new ArgumentNullException(nameof(options));
             }
 
-            var expander = new FlatAreaExpander(options);
+            var expander = new FlatAreaExpander(options.ToOption());
 
             services.AddMvcOptions(o =>
             {
