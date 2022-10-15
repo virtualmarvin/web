@@ -1,3 +1,4 @@
+using FuncSharp;
 using HealthChecks.UI.Client;
 using Marvin.Web;
 using Marvin.Web.Code.Bootstrap;
@@ -6,7 +7,6 @@ using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -63,21 +63,17 @@ builder.Services
 builder.Services.AddHealthChecks()
 .AddCheck<ExampleHealthCheck>("Example");
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+app.Environment.IsDevelopment().Match(
+    t => app.UseMigrationsEndPoint(),
+    f =>
+    {
+        app.UseExceptionHandler("/Home/Error");
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseHsts();
+    });
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -107,5 +103,8 @@ app.MapHealthChecksUI();
 
 app.UseSerilogRequestLogging();
 
-app.Run();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.Run();
