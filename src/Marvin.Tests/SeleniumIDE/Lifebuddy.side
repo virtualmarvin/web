@@ -1,0 +1,195 @@
+{
+  "id": "e0eab47f-da8c-4932-b347-7ce59377d5c0",
+  "version": "2.0",
+  "name": "Lifebuddy",
+  "url": "https://localhost:7292",
+  "tests": [{
+    "id": "6776a2e3-35ac-489f-8603-22cce0dbcf00",
+    "name": "page.policy.exists",
+    "commands": [{
+      "id": "fd554c47-37fb-4c0e-a156-ef233b9e435e",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7292/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3426b502-e203-4540-a509-10dec03334b2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1240x799",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7d6ab631-20c4-42b7-957b-47d11caff6f1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Privacy",
+      "targets": [
+        ["linkText=Privacy", "linkText"],
+        ["css=.flex-grow-1 > .nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Privacy')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Home/Privacy')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Privacy')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e14ad63-a160-4f8f-abc3-c67458092579",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Privacy Policy for Life Buddy')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cdca560c-d1b2-4c55-a917-cd21203780ed",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=h1 > b",
+      "targets": [
+        ["css=h1 > b", "css:finder"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Life Buddy')]", "xpath:innerText"]
+      ],
+      "value": "Privacy Policy for Life Buddy"
+    }]
+  }, {
+    "id": "eb6a9289-10a3-4be8-9f56-a8f3547ca245",
+    "name": "page.login.exists",
+    "commands": [{
+      "id": "fff179de-c139-4cc5-8c23-4ce2b8dd2149",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:7292/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "92694e3b-bcf3-4582-b77f-9571d6394046",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1240x799",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5ef14425-473f-4f15-be3f-8463c6318d99",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.navbar-nav:nth-child(2) > .nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Login')]", "xpath:href"],
+        ["xpath=//ul[2]/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd50bd2e-a33b-4cf8-8b76-1cfb8a620c1a",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3be681be-4f0d-4353-9069-a263b5ab1a0a",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7ce3834-5a37-4eca-8f24-46799eb9ba30",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='account']/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "134a737b-d160-403b-9748-8c30ca1e08b1",
+    "name": "page.register.exists",
+    "commands": [{
+      "id": "693b5939-c47c-417e-a1c6-e88b515fd4f8",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "027ec843-30f2-42c6-b9cd-f630750a87fc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x582",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af5f266c-286f-4c0d-89ad-bb66bcf9f313",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Register",
+      "targets": [
+        ["linkText=Register", "linkText"],
+        ["css=.navbar-nav:nth-child(2) > .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Register')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Identity/Account/Register')]", "xpath:href"],
+        ["xpath=//ul[2]/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Register')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "707b782d-75bd-4cf9-ba75-f45eb7107584",
+      "comment": "",
+      "command": "click",
+      "target": "css=h2",
+      "targets": [
+        ["css=h2", "css:finder"],
+        ["xpath=//form[@id='registerForm']/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Create a new account.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4abe33a7-6270-4823-bba9-a1e51fed44ba",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=h2",
+      "targets": [
+        ["css=h2", "css:finder"],
+        ["xpath=//form[@id='registerForm']/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Create a new account.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "68266bdf-8ce6-4faf-bbdf-1527755cd70e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["6776a2e3-35ac-489f-8603-22cce0dbcf00"]
+  }],
+  "urls": ["https://localhost:7292/"],
+  "plugins": []
+}
