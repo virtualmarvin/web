@@ -30,7 +30,6 @@ This contains anything related to persistence
 
 The domain layer has its own folder self named. This contains the domain entities.
 
-
 ## Adding the user secretes
 
 To use Google and Facebook login you need to ensure the secrets are added
