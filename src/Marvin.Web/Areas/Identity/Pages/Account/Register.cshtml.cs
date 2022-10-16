@@ -2,25 +2,21 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Register Model
+    /// </summary>
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -30,6 +26,14 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        /// <summary>
+        /// Register Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="userStore">User Store</param>
+        /// <param name="signInManager">Sign In Manager</param>
+        /// <param name="logger">Logger</param>
+        /// <param name="emailSender">Email Sender</param>
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
@@ -99,13 +103,22 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <param name="returnUrl">Return URI</param>
+        /// <returns></returns>
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <param name="returnUrl">Return URI</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");

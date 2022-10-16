@@ -2,11 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,10 +11,17 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Reset Password Model
+    /// </summary>
     public class ResetPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
 
+        /// <summary>
+        /// Reset Password Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
         public ResetPasswordModel(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
@@ -71,6 +75,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
 
         }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IActionResult OnGet(string code = null)
         {
             if (code == null)
@@ -87,6 +96,10 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             }
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

@@ -2,24 +2,22 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// External Login Model
+    /// </summary>
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
@@ -30,6 +28,14 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
+        /// <summary>
+        /// External Login Model
+        /// </summary>
+        /// <param name="signInManager">Sign In Manager</param>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="userStore">User Store</param>
+        /// <param name="logger">Logger</param>
+        /// <param name="emailSender">Email Sender</param>
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
@@ -85,9 +91,19 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
         }
-        
+
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet() => RedirectToPage("./Login");
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <param name="provider">Provider</param>
+        /// <param name="returnUrl">Return Uri</param>
+        /// <returns></returns>
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
@@ -96,6 +112,12 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             return new ChallengeResult(provider, properties);
         }
 
+        /// <summary>
+        /// Get Callback command
+        /// </summary>
+        /// <param name="returnUrl">Return Uri</param>
+        /// <param name="remoteError">Remote Error</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -138,6 +160,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             }
         }
 
+        /// <summary>
+        /// Post Confirmation Command
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");

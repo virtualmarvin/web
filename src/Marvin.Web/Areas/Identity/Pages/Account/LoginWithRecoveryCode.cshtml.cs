@@ -2,22 +2,27 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Login With Recovery Code Model
+    /// </summary>
     public class LoginWithRecoveryCodeModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
 
+        /// <summary>
+        /// Login With Recovery Code Model
+        /// </summary>
+        /// <param name="signInManager">Sign In Manager</param>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="logger">Logger</param>
         public LoginWithRecoveryCodeModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
@@ -58,6 +63,12 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             public string RecoveryCode { get; set; }
         }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
@@ -72,6 +83,12 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             return Page();
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <param name="returnUrl">Return URI</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Unable to load two-factor authentication user.</exception>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             if (!ModelState.IsValid)
@@ -88,8 +105,6 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             var recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty);
 
             var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
-
-            var userId = await _userManager.GetUserIdAsync(user);
 
             if (result.Succeeded)
             {

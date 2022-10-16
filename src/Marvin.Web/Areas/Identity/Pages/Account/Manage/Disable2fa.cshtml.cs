@@ -2,20 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// Disable 2fa Model
+    /// </summary>
     public class Disable2faModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<Disable2faModel> _logger;
 
+        /// <summary>
+        /// Disable 2fa Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="logger">Logger</param>
         public Disable2faModel(
             UserManager<IdentityUser> userManager,
             ILogger<Disable2faModel> logger)
@@ -31,6 +36,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Cannot disable 2FA for user as it's not currently enabled.</exception>
         public async Task<IActionResult> OnGet()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -47,6 +57,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Cannot disable 2FA for user as it's not currently enabled.</exception>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);

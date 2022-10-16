@@ -2,11 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -16,12 +14,20 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Resend Email Confirmation Model
+    /// </summary>
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
 
+        /// <summary>
+        /// Resend Email Confirmation Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="emailSender">Email Sender</param>
         public ResendEmailConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -50,10 +56,18 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
         public void OnGet()
         {
+            // TODO: should this be removed if it is empty?
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

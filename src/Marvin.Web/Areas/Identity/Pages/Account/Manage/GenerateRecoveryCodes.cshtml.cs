@@ -2,21 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// Generate Recovery Codes Model
+    /// </summary>
     public class GenerateRecoveryCodesModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
+        /// <summary>
+        /// Generate Recovery Codes Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="logger">Logger</param>
         public GenerateRecoveryCodesModel(
             UserManager<IdentityUser> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
@@ -39,6 +43,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Cannot generate recovery codes for user because they do not have 2FA enabled.</exception>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -56,6 +65,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Cannot generate recovery codes for user because they do not have 2FA enabled.</exception>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);

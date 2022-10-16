@@ -2,11 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +9,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// External Logins Model
+    /// </summary>
     public class ExternalLoginsModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IUserStore<IdentityUser> _userStore;
 
+        /// <summary>
+        /// External Logins Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="signInManager">Sign In Manager</param>
+        /// <param name="userStore">User Store</param>
         public ExternalLoginsModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
@@ -55,6 +59,10 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -78,6 +86,12 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <param name="loginProvider">Login Provider</param>
+        /// <param name="providerKey">Provider Key</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostRemoveLoginAsync(string loginProvider, string providerKey)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -98,6 +112,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
 
+        /// <summary>
+        /// Post Link Login Command
+        /// </summary>
+        /// <param name="provider">Provider</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostLinkLoginAsync(string provider)
         {
             // Clear the existing external cookie to ensure a clean login process
@@ -109,6 +128,11 @@ namespace Marvin.Web.Areas.Identity.Pages.Account.Manage
             return new ChallengeResult(provider, properties);
         }
 
+        /// <summary>
+        /// Get Link Login Callback Command
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task<IActionResult> OnGetLinkLoginCallbackAsync()
         {
             var user = await _userManager.GetUserAsync(User);

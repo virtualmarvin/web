@@ -10,6 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\README.md = ..\..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{39FAA96F-3AAA-465A-8D78-8F47CD8B2D5D}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\.github\workflows\LifeBuddyDevelopment.yml = ..\..\.github\workflows\LifeBuddyDevelopment.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +28,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39FAA96F-3AAA-465A-8D78-8F47CD8B2D5D} = {BDE932EE-C6E8-42C3-B073-5E692C3EDE47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8E82188B-7CF9-45FD-B187-E147E0432A26}

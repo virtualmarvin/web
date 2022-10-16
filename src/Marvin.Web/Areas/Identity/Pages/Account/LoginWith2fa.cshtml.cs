@@ -2,24 +2,28 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Login With 2fa Model
+    /// </summary>
     public class LoginWith2faModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<LoginWith2faModel> _logger;
 
+        /// <summary>
+        /// Login With 2fa Model
+        /// </summary>
+        /// <param name="signInManager">Sign In Manager</param>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="logger">Logger</param>
         public LoginWith2faModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
@@ -73,6 +77,13 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             public bool RememberMachine { get; set; }
         }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <param name="rememberMe">Remember Me</param>
+        /// <param name="returnUrl">Return Uri</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Unable to load two-factor authentication user.</exception>
         public async Task<IActionResult> OnGetAsync(bool rememberMe, string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
@@ -89,6 +100,13 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
             return Page();
         }
 
+        /// <summary>
+        /// Post Command
+        /// </summary>
+        /// <param name="rememberMe">Remember Me</param>
+        /// <param name="returnUrl">Return Uri</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Unable to load two-factor authentication user.</exception>
         public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null)
         {
             if (!ModelState.IsValid)

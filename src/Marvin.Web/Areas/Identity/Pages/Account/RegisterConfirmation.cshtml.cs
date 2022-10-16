@@ -2,9 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,12 +12,20 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Marvin.Web.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Register Confirmation Model
+    /// </summary>
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _sender;
 
+        /// <summary>
+        /// Register Confirmation Model
+        /// </summary>
+        /// <param name="userManager">User Manager</param>
+        /// <param name="sender">Sender</param>
         public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
         {
             _userManager = userManager;
@@ -44,6 +50,12 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
         /// </summary>
         public string EmailConfirmationUrl { get; set; }
 
+        /// <summary>
+        /// Get Command
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <param name="returnUrl">Return Uri</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
         {
             if (email == null)

@@ -4,6 +4,9 @@ using FuncSharp;
 
 namespace Marvin.Web
 {
+    /// <summary>
+    /// Flat Area Extensions
+    /// </summary>
     public static class FlatAreaExtensions
     {
         /// <summary>

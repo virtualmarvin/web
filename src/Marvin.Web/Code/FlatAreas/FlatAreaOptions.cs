@@ -5,10 +5,13 @@
 namespace Marvin.Web
 {
     /// <summary>
-    /// Options to control the behavior of feature folders
+    /// Options to control the behaviour of feature folders
     /// </summary>
     public sealed class FlatAreaOptions
     {
+        /// <summary>
+        /// Options to control the behaviour of feature folders
+        /// </summary>
         public FlatAreaOptions()
         {
             RootFolderName = "Areas";
