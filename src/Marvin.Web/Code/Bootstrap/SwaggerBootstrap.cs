@@ -1,23 +1,28 @@
 ﻿using Marvin.Web.Code.Swagger;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.DotNet.PlatformAbstractions;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
 namespace Marvin.Web.Code.Bootstrap
 {
-    internal static class Swagger
+    internal static class SwaggerBootstrap
     {
-        internal static WebApplicationBuilder AddSwagger(this WebApplicationBuilder builder)
+        internal static IServiceCollection AddSwagger(this IServiceCollection services)
         {
-            builder.Services.AddApiVersioning(
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
+            services.AddApiVersioning(
                 options =>
                 {
                     // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
                     options.ReportApiVersions = true;
                 });
-            builder.Services.AddVersionedApiExplorer(
+            services.AddVersionedApiExplorer(
                 options =>
                 {
                     // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
@@ -28,8 +33,8 @@ namespace Marvin.Web.Code.Bootstrap
                     // can also be used to control the format of the API version in route templates
                     options.SubstituteApiVersionInUrl = true;
                 });
-            builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            builder.Services.AddSwaggerGen(
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddSwaggerGen(
                 options =>
                 {
                     // add a custom operation filter which sets default values
@@ -39,7 +44,7 @@ namespace Marvin.Web.Code.Bootstrap
                     options.IncludeXmlComments(XmlCommentsFilePath);
                 });
 
-            return builder;
+            return services;
         }
 
         internal static WebApplication ConfigureSwagger(this WebApplication app)
@@ -65,9 +70,8 @@ namespace Marvin.Web.Code.Bootstrap
         {
             get
             {
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var fileName = typeof(Program).GetTypeInfo().Assembly.GetName().Name + ".xml";
-                return Path.Combine(basePath, fileName);
+                return Path.Combine(ApplicationEnvironment.ApplicationBasePath, fileName);
             }
         }
     }
