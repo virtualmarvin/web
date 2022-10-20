@@ -116,6 +116,12 @@ More information of documenting can be found in the following Microsoft articles
 * https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/xmldoc/recommended-tags
 * https://learn.microsoft.com/en-gb/dotnet/csharp/language-reference/compiler-options/output
 
+## Hashids
+
+The test API uses Hashids, a non cryptographic encoded string, that can be used to obfuscate database Ids. Examples of this can be found in YouTubes URIs [https://youtu.be/tSuwe7FowzE](https://youtu.be/tSuwe7FowzE) where `tSuwe7FowzE` is a Hashid
+
+The URI above is also a video on Hashids that explains their use.  These are demonstrated in API V2 as a breaking change from 1 to 2.
+
 ## Testing with Selenium IDE
 
 Get the Chrome Selenium IDE extension: [Selenium IDE](https://www.selenium.dev/selenium-ide/)

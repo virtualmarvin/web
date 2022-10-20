@@ -7,13 +7,14 @@ using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.AddSwagger();
+builder.Services.AddSwagger();
 
 builder.AddDatabase();
 
@@ -47,13 +48,13 @@ builder.Services.ConfigureApplicationCookie(options =>
 #endregion
 
 builder.Services
-.AddControllersWithViews(options =>
-{
-    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+    .AddControllersWithViews(options =>
+    {
+        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 
-})
-.AddFlatAreas(new FlatAreaOptions())
-.AddRazorRuntimeCompilation();
+    })
+    .AddFlatAreas(new FlatAreaOptions())
+    .AddRazorRuntimeCompilation();
 
 builder.Services
     .AddHealthChecksUI()
@@ -61,7 +62,9 @@ builder.Services
 /*    .AddPostgreSqlStorage(connectionString);*/
 
 builder.Services.AddHealthChecks()
-.AddCheck<ExampleHealthCheck>("Example");
+    .AddCheck<ExampleHealthCheck>("Example");
+
+builder.Services.AddHashids(builder.Configuration.GetSection(nameof(HashidOptions)).Get<HashidOptions>());
 
 var app = builder.Build();
 
