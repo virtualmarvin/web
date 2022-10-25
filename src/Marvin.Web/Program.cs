@@ -1,3 +1,4 @@
+using System.Reflection;
 using FuncSharp;
 using HealthChecks.UI.Client;
 using Marvin.Web;
@@ -47,6 +48,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 #endregion
 
+builder.Services.AddSingleton<IAppVersionService, ApplicationVersion>();
 builder.Services
     .AddControllersWithViews(options =>
     {
@@ -111,3 +113,12 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+static string GetVersion()
+{
+    Assembly web = Assembly.GetExecutingAssembly();
+    AssemblyName webName = web.GetName();
+
+    return webName.Version.SafeToString("Unknown");
+}
