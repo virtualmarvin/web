@@ -1,4 +1,3 @@
-using System.Reflection;
 using FuncSharp;
 using HealthChecks.UI.Client;
 using Marvin.Web;
@@ -8,7 +7,6 @@ using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
