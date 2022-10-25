@@ -1,4 +1,5 @@
 ﻿using FuncSharp;
+using Marvin.Web.Code.Extensions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Razor;
 
@@ -43,11 +44,11 @@ namespace Marvin.Web
             ViewLocationExpanderContext context,
             IEnumerable<string> viewLocations)
         {
-            if (context == null)
+            if (context.IsNull())
             {
                 throw new ArgumentNullException(nameof(context));
             }
-            if (viewLocations == null)
+            if (viewLocations.IsNull())
             {
                 throw new ArgumentNullException(nameof(viewLocations));
             }
