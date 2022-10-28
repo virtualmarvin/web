@@ -2,6 +2,7 @@
 
 namespace Marvin.Web.Code.Application;
 
+#region Interface
 /// <summary>
 /// Service providing the version of the application
 /// </summary>
@@ -12,6 +13,7 @@ public interface IAppVersionService
     /// </summary>
     string Version { get; }
 }
+#endregion
 
 /// <inheritdoc />
 public class ApplicationVersion : IAppVersionService
