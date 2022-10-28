@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Marvin.Web.Code.Extensions;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -23,7 +24,7 @@ namespace Marvin.Web.Code.Swagger
 
             operation.Deprecated |= apiDescription.IsDeprecated();
 
-            if (operation.Parameters == null)
+            if (operation.Parameters.IsNull())
             {
                 return;
             }
@@ -34,12 +35,12 @@ namespace Marvin.Web.Code.Swagger
             {
                 var description = apiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
 
-                if (parameter.Description == null)
+                if (parameter.Description.IsNull())
                 {
                     parameter.Description = description.ModelMetadata?.Description;
                 }
 
-                if (parameter.Schema.Default == null && description.DefaultValue != null)
+                if (parameter.Schema.Default.IsNull() && description.DefaultValue != null)
                 {
                     parameter.Schema.Default = new OpenApiString(description.DefaultValue.ToString());
                 }

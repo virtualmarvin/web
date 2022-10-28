@@ -1,6 +1,7 @@
 ﻿// Modified from https://github.com/OdeToCode/AddFeatureFolders
 
 using FuncSharp;
+using Marvin.Web.Code.Extensions;
 
 namespace Marvin.Web
 {
@@ -14,11 +15,11 @@ namespace Marvin.Web
         /// </summary>
         public static IMvcBuilder AddFlatAreas(this IMvcBuilder services, FlatAreaOptions options)
         {
-            if (services == null)
+            if (services.IsNull())
             {
                 throw new ArgumentNullException(nameof(services));
             }
-            if (options == null)
+            if (options.IsNull())
             {
                 throw new ArgumentNullException(nameof(options));
             }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+﻿using Marvin.Web.Code.Extensions;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 // Modified from https://github.com/OdeToCode/AddFeatureFolders
 
@@ -19,7 +20,7 @@ namespace Marvin.Web
         /// <exception cref="ArgumentNullException">Null exception for <paramref name="options"/></exception>
         public FlatAreaConvention(FlatAreaOptions options)
         {
-            if(options == null)
+            if (options.IsNull())
             {
                 throw new ArgumentNullException(nameof(options));
             }
@@ -34,7 +35,7 @@ namespace Marvin.Web
         /// <exception cref="ArgumentNullException">Null exception for <paramref name="controller"/></exception>
         public void Apply(ControllerModel controller)
         {
-            if (controller == null)
+            if (controller.IsNull())
             {
                 throw new ArgumentNullException(nameof(controller));
             }
