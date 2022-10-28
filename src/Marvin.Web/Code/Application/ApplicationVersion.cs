@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
 
-namespace Marvin.Web.Code.Bootstrap;
+namespace Marvin.Web.Code.Application;
 
 /// <summary>
 /// Service providing the version of the application
 /// </summary>
-public interface IAppVersionService 
-{ 
+public interface IAppVersionService
+{
     /// <summary>
-    /// 
+    /// Current version of the application.
     /// </summary>
     string Version { get; }
 }

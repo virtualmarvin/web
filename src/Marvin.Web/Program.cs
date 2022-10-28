@@ -1,6 +1,7 @@
 using FuncSharp;
 using HealthChecks.UI.Client;
 using Marvin.Web;
+using Marvin.Web.Code.Application;
 using Marvin.Web.Code.Bootstrap;
 using Marvin.Web.Code.HealthChecks;
 using Marvin.Web.Data;
