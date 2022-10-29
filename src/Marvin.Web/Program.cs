@@ -1,13 +1,13 @@
 using FuncSharp;
 using HealthChecks.UI.Client;
 using Marvin.Web;
+using Marvin.Web.Code.Application;
 using Marvin.Web.Code.Bootstrap;
 using Marvin.Web.Code.HealthChecks;
 using Marvin.Web.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +47,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 #endregion
 
+builder.Services.AddSingleton<IAppVersionService, ApplicationVersion>();
 builder.Services
     .AddControllersWithViews(options =>
     {
