@@ -15,7 +15,7 @@ public static class ObjectExtensions
     /// <param name="t"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns><see cref="bool"/></returns>
-    public static bool IsNull<T>([NotNullWhen(returnValue: false)] this T t)
+    public static bool IsNull<T>([NotNullWhen(returnValue: false)] this T? t)
         where T : class
     {
         return ReferenceEquals(t, null);
@@ -29,7 +29,7 @@ public static class ObjectExtensions
     /// <param name="t"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns><see cref="bool"/></returns>
-    public static bool IsNotNull<T>([NotNullWhen(returnValue: true)] this T t)
+    public static bool IsNotNull<T>([NotNullWhen(returnValue: true)] this T? t)
         where T : class
     {
         return !ReferenceEquals(t, null);

@@ -1,23 +1,35 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics;
+using System.Runtime.Serialization;
 
 namespace Marvin.Web.Code.Exceptions
 {
     /// <summary>
     /// Thrown when a validation exception has occurred
     /// </summary>
+    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
+    [Serializable]
     public class ValidationException : Exception
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Initialize a new instance of the <see cref="ValidationException"/> class
+        /// </summary>
         public ValidationException()
         {
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initialize a new instance of the <see cref="ValidationException"/> 
+        /// class with a specific error message
+        /// </summary>
         public ValidationException(string? message) : base(message)
         {
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initialize a new instance of the <see cref="MultiException"/> 
+        /// class with a specific error message and a reference to the inner
+        /// exception that is the cause of this exception
+        /// </summary>
         public ValidationException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
@@ -25,6 +37,11 @@ namespace Marvin.Web.Code.Exceptions
         /// <inheritdoc />
         protected ValidationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
+        }
+
+        private string GetDebuggerDisplay()
+        {
+            return ToString();
         }
     }
 }
