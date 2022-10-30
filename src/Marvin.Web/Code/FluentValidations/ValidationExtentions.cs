@@ -1,4 +1,6 @@
-﻿namespace Marvin.Web.Code.FluentValidations
+﻿using Marvin.Web.Code.Exceptions;
+
+namespace Marvin.Web.Code.FluentValidations
 {
     /// <summary>
     /// Extensions for validating conditions

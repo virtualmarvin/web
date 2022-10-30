@@ -135,3 +135,6 @@ Once this is installed you can record and create some basic front end tests. The
 3. Choose "Open an existing project" from the IDE
 4. Select the `Lifebuddy.side` test suite from `src\Marvin.Tests\SeleniumIDE`
 5. Run the tests, and you should see all green 😇
+
+## Fluent Validation
+https://blog.getpaint.net/2008/12/06/a-fluent-approach-to-c-parameter-validation/
