@@ -1,7 +1,8 @@
 ﻿using Marvin.Web.Code.Exceptions;
 using Marvin.Web.Code.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Marvin.Web.Code.FluentValidations
+namespace Marvin.Web.Code.Validators
 {
     /// <summary>
     /// Extensions for validating conditions
@@ -18,7 +19,7 @@ namespace Marvin.Web.Code.FluentValidations
         /// <param name="theObject">the object to validate</param>
         /// <param name="paramName">Name of the parameter</param>
         /// <returns><see cref="Validation"/></returns>
-        public static IValidation ArgumentNullCheck<T>(this IValidation validation, T theObject, string paramName)
+        public static IValidation ArgumentNullCheck<T>(this IValidation validation, [NotNullWhen(returnValue: false)] T? theObject, string paramName)
             where T : class
         {
             if (theObject.IsNull())
@@ -37,14 +38,16 @@ namespace Marvin.Web.Code.FluentValidations
         /// <param name="validation"><see cref="Validation"/></param>
         /// <returns><see cref="Validation"/></returns>
         /// <exception cref="ValidationException">If <see cref="Validation"/> contains any exceptions then they all get thrown here</exception>
-        public static IValidation Check(this IValidation validation)
+        public static bool Check(this IValidation validation)
         {
+            validation.Checked();
+
             if (!validation.HasExceptions)
             {
-                return validation;
+                return true;
             }
 
-            if (validation.Exceptions.Take(2).Count() == 1)
+            if (validation.ErrorCount == 1)
             {
                 throw new ValidationException(MESSAGE, validation.Exceptions.First());
             }
@@ -52,7 +55,6 @@ namespace Marvin.Web.Code.FluentValidations
             {
                 throw new ValidationException(MESSAGE, new MultiException(validation.Exceptions));
             }
-
         }
     }
 }

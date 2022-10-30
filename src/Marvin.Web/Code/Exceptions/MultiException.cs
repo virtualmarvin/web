@@ -69,7 +69,6 @@ namespace Marvin.Web.Code.Exceptions
         public MultiException(IEnumerable<Exception> innerExceptions)
             : this(MESSAGE, innerExceptions)
         {
-            _innerExceptions = Array.Empty<Exception>();
         }
 
         /// <summary>
@@ -103,11 +102,6 @@ namespace Marvin.Web.Code.Exceptions
         public MultiException(string? message, IEnumerable<Exception> innerExceptions)
             : base(message, innerExceptions.FirstOrDefault())
         {
-            if (innerExceptions.IsNull())
-            {
-                throw new ArgumentNullException(nameof(innerExceptions));
-            }
-
             _innerExceptions = innerExceptions.ToArray();
         }
 
@@ -119,12 +113,9 @@ namespace Marvin.Web.Code.Exceptions
         {
             get
             {
-                if (_innerExceptions.IsNotNull())
+                for (int i = 0; i < _innerExceptions.Length; ++i)
                 {
-                    for (int i = 0; i < _innerExceptions.Length; ++i)
-                    {
-                        yield return _innerExceptions[i];
-                    }
+                    yield return _innerExceptions[i];
                 }
             }
         }

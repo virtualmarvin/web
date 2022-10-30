@@ -36,26 +36,6 @@ public static class ObjectExtensions
     }
 
     /// <summary>
-    /// Checks if the value is null, if it is then throws an ArgumentNullException with the passed name
-    /// We also include some information for the compiler as we know from the result of this
-    /// that a null check would not be required from the return value
-    /// </summary>
-    /// <typeparam name="T">Type of Object to check</typeparam>
-    /// <param name="t">Object to check for null value</param>
-    /// <param name="name">Name of the parameter being checked</param>
-    /// <returns><see cref="bool"/></returns>
-    /// <exception cref="ArgumentNullException">If the value is null throw a ArgumentNullException</exception>
-    public static bool IsNullThrowArgumentNull<T>([NotNullWhen(returnValue: false)] this T t, string name)
-        where T : class
-    {
-        if(t.IsNull())
-        {
-            throw new ArgumentNullException(name);
-        }
-        return true;
-    }
-
-    /// <summary>
     /// Safely determine if two objects are equal
     /// </summary>
     /// <param name="t">Object under test</param>
