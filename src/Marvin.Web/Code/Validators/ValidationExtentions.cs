@@ -1,6 +1,8 @@
-﻿using Marvin.Web.Code.Exceptions;
+﻿using FuncSharp;
+using Marvin.Web.Code.Exceptions;
 using Marvin.Web.Code.Extensions;
 using System.Diagnostics.CodeAnalysis;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace Marvin.Web.Code.Validators
 {
@@ -20,17 +22,10 @@ namespace Marvin.Web.Code.Validators
         /// <param name="paramName">Name of the parameter</param>
         /// <returns><see cref="Validation"/></returns>
         public static IValidation ArgumentNullCheck<T>(this IValidation validation, [NotNullWhen(returnValue: false)] T? theObject, string paramName)
-            where T : class
-        {
-            if (theObject.IsNull())
-            {
-                return validation.AddException(new ArgumentNullException(paramName));
-            }
-            else
-            {
-                return validation;
-            }
-        }
+            where T : class 
+            => theObject.IsNull().Match(
+                t => validation.AddException(new ArgumentNullException(paramName)),
+                f => validation);
 
         /// <summary>
         /// Check and throw any validation exceptions here
