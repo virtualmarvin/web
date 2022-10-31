@@ -1,4 +1,4 @@
-﻿using Marvin.Web.Code.Validators;
+﻿using Marvin.FluentChecks.Validators;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 // Modified from https://github.com/OdeToCode/AddFeatureFolders

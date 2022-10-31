@@ -1,4 +1,4 @@
-﻿using Marvin.Web.Code.Exceptions;
+﻿using Marvin.FluentChecks.Exceptions;
 
 namespace Marvin.Web.Tests.Code.Exceptions
 {

@@ -38,4 +38,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Marvin.FluentChecks\Marvin.FluentChecks.csproj" />
+  </ItemGroup>
+
 </Project>

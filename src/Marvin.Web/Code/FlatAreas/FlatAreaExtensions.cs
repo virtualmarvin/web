@@ -1,7 +1,7 @@
 ﻿// Modified from https://github.com/OdeToCode/AddFeatureFolders
 
 using FuncSharp;
-using Marvin.Web.Code.Extensions;
+using Marvin.FluentChecks.Extensions;
 
 namespace Marvin.Web
 {

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.Serialization;
 
-namespace Marvin.Web.Code.Exceptions
+namespace Marvin.FluentChecks.Exceptions
 {
     /// <summary>
     /// Thrown when a validation exception has occurred

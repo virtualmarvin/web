@@ -24,11 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Marvin.Web\Marvin.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Code\" />
+    <ProjectReference Include="..\..\Marvin.FluentChecks\Marvin.FluentChecks.csproj" />
   </ItemGroup>
 
 </Project>

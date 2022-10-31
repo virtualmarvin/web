@@ -1,8 +1,8 @@
-﻿using Marvin.Web.Code.Exceptions;
-using Marvin.Web.Code.Extensions;
+﻿using Marvin.FluentChecks.Exceptions;
+using Marvin.FluentChecks.Extensions;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Marvin.Web.Code.Validators
+namespace Marvin.FluentChecks.Validators
 {
     /// <summary>
     /// Extensions for validating conditions

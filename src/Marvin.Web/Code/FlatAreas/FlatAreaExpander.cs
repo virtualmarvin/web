@@ -1,5 +1,5 @@
 ﻿using FuncSharp;
-using Marvin.Web.Code.Validators;
+using Marvin.FluentChecks.Validators;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Razor;
 

@@ -1,8 +1,8 @@
-﻿using Marvin.Web.Code.Extensions;
+﻿using Marvin.FluentChecks.Extensions;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
-namespace Marvin.Web.Code.Exceptions
+namespace Marvin.FluentChecks.Exceptions
 {
     /// <summary>
     /// Represents a collection of errors that occur during application execution

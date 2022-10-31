@@ -1,4 +1,4 @@
-﻿namespace Marvin.Web.Code.Validators
+﻿namespace Marvin.FluentChecks.Validators
 {
     /// <summary>
     /// A collection of Validation exceptions

@@ -1,5 +1,5 @@
-﻿using Marvin.Web.Code.Exceptions;
-using Marvin.Web.Code.Validators;
+﻿using Marvin.FluentChecks.Exceptions;
+using Marvin.FluentChecks.Validators;
 
 namespace Marvin.Web.Tests.Code.Validators
 {
