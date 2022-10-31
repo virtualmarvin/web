@@ -14,13 +14,13 @@ public static class ObjectExtensions
     /// </summary>
     /// <param name="t"></param>
     /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static bool IsNull<T>([NotNullWhen(returnValue: false)] this T t)
+    /// <returns><see cref="bool"/></returns>
+    public static bool IsNull<T>([NotNullWhen(returnValue: false)] this T? t)
         where T : class
     {
         return ReferenceEquals(t, null);
     }
-    
+
     /// <summary>
     /// Returns a boolean value whether T is NOT null
     /// We also include some information for the compiler as we know from the result of this
@@ -28,13 +28,13 @@ public static class ObjectExtensions
     /// </summary>
     /// <param name="t"></param>
     /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static bool IsNotNull<T>([NotNullWhen(returnValue: true)] this T t)
+    /// <returns><see cref="bool"/></returns>
+    public static bool IsNotNull<T>([NotNullWhen(returnValue: true)] this T? t)
         where T : class
     {
         return !ReferenceEquals(t, null);
     }
-    
+
     /// <summary>
     /// Safely determine if two objects are equal
     /// </summary>

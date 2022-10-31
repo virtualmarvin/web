@@ -168,7 +168,8 @@ namespace Marvin.Web.Areas.Identity.Pages.Account
         /// <returns></returns>
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
+
             // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info.IsNull())
