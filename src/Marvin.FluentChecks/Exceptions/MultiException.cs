@@ -11,7 +11,6 @@ namespace Marvin.FluentChecks.Exceptions
     [Serializable]
     public class MultiException : Exception
     {
-        private const string MESSAGE = "There is at least one validation exception";
         private readonly Exception[] _innerExceptions;
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace Marvin.FluentChecks.Exceptions
         /// </summary>
         /// <exception cref="ArgumentNullException" />
         public MultiException(IEnumerable<Exception> innerExceptions)
-            : this(MESSAGE, innerExceptions)
+            : this(Values.VALIDATION_MESSAGE, innerExceptions)
         {
         }
 
@@ -78,7 +77,7 @@ namespace Marvin.FluentChecks.Exceptions
         /// </summary>
         /// <exception cref="ArgumentNullException" />
         public MultiException(Exception[] innerExceptions)
-            : this(MESSAGE, (IEnumerable<Exception>)innerExceptions)
+            : this(Values.VALIDATION_MESSAGE, (IEnumerable<Exception>)innerExceptions)
         {
         }
 

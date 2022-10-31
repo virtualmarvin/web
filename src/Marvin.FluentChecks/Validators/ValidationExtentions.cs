@@ -9,7 +9,6 @@ namespace Marvin.FluentChecks.Validators
     /// </summary>
     public static class ValidationExtensions
     {
-        private const string MESSAGE = "At least one validation exception has occurred, see inner exception for details";
 
         /// <summary>
         /// Check if a parameter is null
@@ -49,11 +48,11 @@ namespace Marvin.FluentChecks.Validators
 
             if (validation.ErrorCount == 1)
             {
-                throw new ValidationException(MESSAGE, validation.Exceptions.First());
+                throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, validation.Exceptions.First());
             }
             else
             {
-                throw new ValidationException(MESSAGE, new MultiException(validation.Exceptions));
+                throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, new MultiException(validation.Exceptions));
             }
         }
     }
