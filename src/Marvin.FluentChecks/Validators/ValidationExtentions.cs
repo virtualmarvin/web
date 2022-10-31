@@ -1,4 +1,5 @@
-﻿using Marvin.FluentChecks.Exceptions;
+﻿using FuncSharp;
+using Marvin.FluentChecks.Exceptions;
 using Marvin.FluentChecks.Extensions;
 using System.Diagnostics.CodeAnalysis;
 
@@ -20,16 +21,9 @@ namespace Marvin.FluentChecks.Validators
         /// <returns><see cref="Validation"/></returns>
         public static IValidation ArgumentNullCheck<T>(this IValidation validation, [NotNullWhen(returnValue: false)] T? theObject, string paramName)
             where T : class
-        {
-            if (theObject.IsNull())
-            {
-                return validation.AddException(new ArgumentNullException(paramName));
-            }
-            else
-            {
-                return validation;
-            }
-        }
+            => theObject.IsNull().Match(
+                t => validation.AddException(new ArgumentNullException(paramName)),
+                f => validation);
 
         /// <summary>
         /// Check and throw any validation exceptions here
@@ -46,14 +40,12 @@ namespace Marvin.FluentChecks.Validators
                 return true;
             }
 
-            if (validation.ErrorCount == 1)
-            {
-                throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, validation.Exceptions.First());
-            }
-            else
-            {
-                throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, new MultiException(validation.Exceptions));
-            }
+            validation.ErrorCount.Match(1,
+                t => throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, validation.Exceptions.First()),
+                f => throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, new MultiException(validation.Exceptions)));
+
+            // This is unreachable, but the compiler doesn't know it.
+            return false;
         }
     }
 }

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FuncSharp" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>

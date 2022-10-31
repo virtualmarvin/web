@@ -1,4 +1,5 @@
-﻿using Marvin.FluentChecks.Extensions;
+﻿using FuncSharp;
+using Marvin.FluentChecks.Extensions;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
@@ -36,16 +37,10 @@ namespace Marvin.FluentChecks.Exceptions
         /// exception that is the cause of this exception
         /// </summary>
         public MultiException(string? message, Exception? innerException) : base(message, innerException)
-        {
-            if (innerException.IsNotNull())
-            {
-                _innerExceptions = new Exception[1] { innerException };
-            }
-            else 
-            {
-                _innerExceptions = Array.Empty<Exception>();
-            }
-        }
+            => _innerExceptions = innerException.IsNull().Match(
+                t => Array.Empty<Exception>(),
+                f => new Exception[1] { innerException });
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiException"/> class

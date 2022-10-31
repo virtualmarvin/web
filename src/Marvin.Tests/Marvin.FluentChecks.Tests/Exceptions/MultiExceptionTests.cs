@@ -1,6 +1,6 @@
 ﻿using Marvin.FluentChecks.Exceptions;
 
-namespace Marvin.Web.Tests.Code.Exceptions
+namespace Marvin.FluentChecks.Tests.Code.Exceptions
 {
     public class MultiExceptionTests
     {
@@ -15,8 +15,6 @@ namespace Marvin.Web.Tests.Code.Exceptions
             var exception = new MultiException();
 
             // Assert
-            exception.Should().NotBeNull();
-            exception.InnerException.Should().BeNull();
             exception.InnerExceptions.Should().NotBeNull()
                 .And.HaveCount(0);
         }
@@ -31,9 +29,6 @@ namespace Marvin.Web.Tests.Code.Exceptions
             var exception = new MultiException(message);
 
             // Assert
-            exception.Should().NotBeNull();
-            exception.Message.Should().Be(message);
-            exception.InnerException.Should().BeNull();
             exception.InnerExceptions.Should().NotBeNull()
                 .And.HaveCount(0);
         }
@@ -49,12 +44,26 @@ namespace Marvin.Web.Tests.Code.Exceptions
             var exception = new MultiException(message, inner);
 
             // Assert
-            exception.Should().NotBeNull();
-            exception.Message.Should().Be(message);
-            exception.InnerException.Should().NotBeNull()
-                .And.Be(inner);
             exception.InnerExceptions.Should().NotBeNull()
                 .And.HaveCount(1);
+        }
+
+        [Fact]
+        public void Constructor_WithMessageAndNullInnerExceptionParamater_Instanciates()
+        {
+            // Arrange
+            var message = _fixture.Create<string>();
+            ArgumentException? inner = null;
+
+            // Act
+            var exception = new MultiException(message, inner);
+
+            // Assert
+            exception.Should().NotBeNull();
+            exception.Message.Should().Be(message);
+            exception.InnerException.Should().BeNull();
+            exception.InnerExceptions.Should().NotBeNull()
+                .And.HaveCount(0);
         }
 
         [Fact]
