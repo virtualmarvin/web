@@ -1,9 +1,10 @@
-﻿namespace Marvin.FluentChecks.Validators
+﻿namespace Marvin.FluentChecks
 {
     /// <summary>
-    /// A collection of Validation exceptions
+    /// Contracts represent data that has been miscoded
+    /// Also known as shit you did wrong
     /// </summary>
-    public interface IValidation
+    public interface IContract
     {
         /// <summary>
         /// A collection of Validation related Exceptions
@@ -18,7 +19,14 @@
         /// <summary>
         /// The number of exceptions in the class
         /// </summary>
-        int ErrorCount { get; }
+        int ExceptionCount { get; }
+
+        /// <summary>
+        /// Add an exception to the collection
+        /// </summary>
+        /// <param name="ex">The exception to add</param>
+        /// <returns>The current Validation</returns>
+        IContract AddException(Exception ex);
 
         /// <summary>
         /// Value set when validations have been checked
@@ -29,43 +37,26 @@
         /// Updated the class to show that check has been called
         /// </summary>
         void Checked();
-
-        /// <summary>
-        /// Add an exception to the collection
-        /// </summary>
-        /// <param name="ex">The exception to add</param>
-        /// <returns>The current Validation</returns>
-        Validation AddException(Exception ex);
     }
 
     /// <inheritdoc />
-    public sealed class Validation : IValidation
+    public sealed class Contract : IContract
     {
         private readonly List<Exception> _exceptions = new(1);
-        
-        private Validation()
-        { }
+
+        private Contract() { }
 
         /// <inheritdoc />
         public IEnumerable<Exception> Exceptions => _exceptions;
 
         /// <inheritdoc />
-        public int ErrorCount => _exceptions.Count;
-
-        /// <inheritdoc />
-        public bool Validated { get; private set; } = false;
+        public bool HasExceptions => ExceptionCount > 0;
         
         /// <inheritdoc />
-        public bool HasExceptions => _exceptions.Count > 0;
+        public int ExceptionCount => _exceptions.Count;
 
         /// <inheritdoc />
-        public void Checked()
-        {
-            Validated = true;
-        }
-
-        /// <inheritdoc />
-        public Validation AddException(Exception ex)
+        public IContract AddException(Exception ex)
         {
             lock (_exceptions)
             {
@@ -75,10 +66,19 @@
             return this;
         }
 
+        /// <inheritdoc />
+        public bool Validated { get; private set; }
+        
+        /// <inheritdoc />
+        public void Checked()
+        {
+            Validated = true;
+        }
+
         /// <summary>
         /// Start the validation process with a null <see cref="Validation"/> class
         /// </summary>
         /// <returns>null</returns>
-        public static IValidation Begin() => new Validation();
+        public static IContract Begin() => new Contract();
     }
 }

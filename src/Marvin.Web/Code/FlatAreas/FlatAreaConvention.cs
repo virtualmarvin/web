@@ -1,4 +1,5 @@
-﻿using Marvin.FluentChecks.Validators;
+﻿using Marvin.FluentChecks;
+using Marvin.FluentChecks.Extensions;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 // Modified from https://github.com/OdeToCode/AddFeatureFolders
@@ -20,7 +21,7 @@ namespace Marvin.Web
         /// <exception cref="ArgumentNullException">Null exception for <paramref name="options"/></exception>
         public FlatAreaConvention(FlatAreaOptions options)
         {
-            Validation.Begin().ArgumentNullCheck(options, nameof(options)).Check();
+            Contract.Begin().ArgNull(() => options).Check();
             
             _folderName = options.RootFolderName;
             _nameDerivationStrategy = options.DeriveFolderName ?? DeriveAreaFolderName;
@@ -33,7 +34,7 @@ namespace Marvin.Web
         /// <exception cref="ArgumentNullException">Null exception for <paramref name="controller"/></exception>
         public void Apply(ControllerModel controller)
         {
-            Validation.Begin().ArgumentNullCheck(controller, nameof(controller)).Check();
+            Contract.Begin().ArgNull(() => controller).Check();
 
             var areaName = _nameDerivationStrategy(controller);
             controller.Properties.Add("area", areaName);
