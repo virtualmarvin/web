@@ -1,4 +1,5 @@
-﻿using Marvin.FluentChecks.Extensions;
+﻿using Marvin.FluentChecks.Exceptions;
+using Marvin.FluentChecks.Extensions;
 
 namespace Marvin.FluentChecks.Tests
 {
@@ -6,20 +7,17 @@ namespace Marvin.FluentChecks.Tests
     {
         private readonly IFixture _fixture = new Fixture();
 
-        [Theory]
-        [InlineData(null, null, 2)]
-        [InlineData(1, null, 1)]
-        [InlineData(null, "", 1)]
-        [InlineData(1, "", 0)]
-        public void ArgNull_WithOptions_ReturnsAsExpected(int? option1, string? option2, int expected)
+        [Fact]
+        public void Check_WithNoError_ReturnsSuccess()
         {
-            var contract = Contract
-                .Begin()
-                .ArgNull(() => option1)
-                .ArgNull(() => option2);
+            // Arrange
+            var business = Business.Begin();
 
-            contract.ExceptionCount.Should().Be(expected);
+            // Act
+            business.Check();
+
+            // Assert
+            business.Success.Should().BeTrue();
         }
-
     }
 }
