@@ -1,7 +1,6 @@
-﻿using Marvin.FluentChecks.Exceptions;
-using Marvin.FluentChecks.Extensions;
+﻿using Marvin.FluentChecks.Extensions;
 
-namespace Marvin.FluentChecks.Tests.Extentions
+namespace Marvin.FluentChecks.Tests
 {
     public class IBusinessExtentionTests
     {
