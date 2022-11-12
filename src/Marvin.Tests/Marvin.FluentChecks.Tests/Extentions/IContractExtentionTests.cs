@@ -52,6 +52,7 @@ namespace Marvin.FluentChecks.Tests.Extentions
             action.Should().Throw<ValidationException>()
                 .WithInnerExceptionExactly<MultiException>()
                 .And.InnerExceptions.Should().HaveCount(2);
+            contract.Validated.Should().BeTrue();
         }
 
         [Fact]
@@ -68,6 +69,7 @@ namespace Marvin.FluentChecks.Tests.Extentions
             // Assert
             action.Should().Throw<ValidationException>()
                 .WithInnerExceptionExactly<ArgumentNullException>();
+            contract.Validated.Should().BeTrue();
         }
 
         [Fact]
@@ -80,6 +82,7 @@ namespace Marvin.FluentChecks.Tests.Extentions
 
             // Assert
             contract.Check().Should().BeTrue();
+            contract.Validated.Should().BeTrue();
         }
     }
 }
