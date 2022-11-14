@@ -33,13 +33,13 @@ namespace Marvin.FluentChecks.Extensions
         /// <param name="validation"><see cref="Validation"/></param>
         /// <returns><see cref="Validation"/></returns>
         /// <exception cref="ValidationException">If <see cref="Validation"/> contains any exceptions then they all get thrown here</exception>
-        public static bool Check(this IContract contract)
+        public static IContract Check(this IContract contract)
         {
             contract.Checked();
 
             if (!contract.HasExceptions)
             {
-                return true;
+                return contract;
             }
 
             contract.ExceptionCount.Match(1,
@@ -47,7 +47,7 @@ namespace Marvin.FluentChecks.Extensions
                 f => throw new ValidationException(Values.VALIDATION_EXCEPTION_MESSAGE, new MultiException(contract.Exceptions)));
 
             // This is unreachable, but the compiler doesn't know it.
-            return false;
+            return contract;
         }
     }
 }

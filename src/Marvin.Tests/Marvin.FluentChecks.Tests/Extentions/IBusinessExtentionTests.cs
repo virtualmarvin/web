@@ -14,10 +14,29 @@ namespace Marvin.FluentChecks.Tests
             var business = Business.Begin();
 
             // Act
-            business.Check();
+            business = business.Check();
 
             // Assert
             business.Success.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(default(int), true)]
+        [InlineData(4, false)]
+        public void IsMatch_WithValue_ReturnsExpected(int value, bool expected)
+        {
+            // Arrange
+            var business = Business.Begin();
+
+            // Act
+            business = business
+                .Param(() => value)
+                .IsGreaterThan(2)
+                .And()
+                .IsLessThan(10);
+
+            // Assert
+            business.HasErrors.Should().Be(expected);
         }
     }
 }

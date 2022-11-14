@@ -81,7 +81,7 @@ namespace Marvin.FluentChecks.Tests.Extentions
             var contract = Contract.Begin();
 
             // Assert
-            contract.Check().Should().BeTrue();
+            contract.Check().HasExceptions.Should().BeFalse();
             contract.Validated.Should().BeTrue();
         }
     }
