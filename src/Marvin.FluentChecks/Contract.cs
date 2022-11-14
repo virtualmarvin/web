@@ -51,7 +51,7 @@
 
         /// <inheritdoc />
         public bool HasExceptions => ExceptionCount > 0;
-        
+
         /// <inheritdoc />
         public int ExceptionCount => _exceptions.Count;
 
@@ -68,7 +68,7 @@
 
         /// <inheritdoc />
         public bool Validated { get; private set; }
-        
+
         /// <inheritdoc />
         public void Checked()
         {

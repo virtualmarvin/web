@@ -20,7 +20,7 @@ namespace Marvin.FluentChecks.Tests
             business.Success.Should().BeTrue();
         }
 
-        [Theory]
+        /*[Theory]
         [InlineData(default(int), true)]
         [InlineData(4, false)]
         public void IsMatch_WithValue_ReturnsExpected(int value, bool expected)
@@ -37,6 +37,6 @@ namespace Marvin.FluentChecks.Tests
 
             // Assert
             business.HasErrors.Should().Be(expected);
-        }
+        }*/
     }
 }

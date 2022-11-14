@@ -65,7 +65,7 @@ namespace Marvin.FluentChecks.Tests.Extentions
             // Assert
             @class.IsNotNull().Should().Be(expected);
         }
-
+        /*
         [Theory]
         [MemberData(nameof(IsDefaultData))]
         public void IsDefault_WhenCalled_ReturnsExpected(object obj, bool expected)
@@ -88,7 +88,7 @@ namespace Marvin.FluentChecks.Tests.Extentions
 
             // Assert
             obj.IsNotDefault().Should().Be(expected);
-        }
+        }*/
 
         [Fact]
         public void SafeEquals_WithSameObject_ReturnsTrue()

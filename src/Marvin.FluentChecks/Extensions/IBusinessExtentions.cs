@@ -22,10 +22,10 @@ namespace Marvin.FluentChecks.Extensions
 
             var value = func();
 
-            if(value.IsDefault())
+            /*if(value.IsDefault())
             {
                 return business;
-            }
+            }*/
 
 
             return business;
