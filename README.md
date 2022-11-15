@@ -145,3 +145,24 @@ to check for many exceptions cleaning up the code.
 `Validation.Begin().ArgumentNullCheck(object1, name1).ArgumentNullCheck(object2, name2).Check()
 
 This is based on the following blog https://blog.getpaint.net/2008/12/06/a-fluent-approach-to-c-parameter-validation/
+
+## Useful Resources
+
+A list of useful resources for the project
+
+### Functional Programming
+
+- [Going all in with Functional C#](https://edcharbeneau.com/csharp-functional-workshop-instructions/)
+- [FuncSharp YouTube Video](https://www.youtube.com/watch?v=t20txMT82ws&t=200s)
+- [F Sharp For Fun And Profit](https://fsharpforfunandprofit.com/site-contents/#functional-design)
+- [Parse, don't validate](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/)
+- [Primitive obsession](https://hackernoon.com/what-is-primitive-obsession-and-how-can-we-fix-it-wh2f33ki)
+- [Ploeh Blog by Mark Seeman](https://blog.ploeh.dk/)
+  - [Archive](https://blog.ploeh.dk/archive/)
+- [Type classes explained](https://medium.com/@olxc/type-classes-explained-a9767f64ed2c)
+- [Out of the tarpit](https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf)
+- [Functional Design Patterns](https://www.youtube.com/watch?v=srQt1NAHYC0)
+
+### General Coding
+
+- [Object Calisthenics](https://dev.to/pbouillon/writing-cleaner-code-with-object-calisthenics-1ea0)
