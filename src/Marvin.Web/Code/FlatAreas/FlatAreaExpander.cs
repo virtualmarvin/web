@@ -45,10 +45,10 @@ namespace Marvin.Web
             ViewLocationExpanderContext context,
             IEnumerable<string> viewLocations)
         {
-            Contract.Begin()
-                .ArgNull(() => context)
-                .ArgNull(() => viewLocations)
-                .Check();
+            Check
+                .ArgNullContract(() => context)
+                .ArgNullContract(() => viewLocations)
+                .Validate();
 
             var controllerDescriptor = context.ActionContext.ActionDescriptor as ControllerActionDescriptor;
             var areaName = controllerDescriptor?.Properties["area"] as string;

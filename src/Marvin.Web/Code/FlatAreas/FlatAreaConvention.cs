@@ -21,7 +21,7 @@ namespace Marvin.Web
         /// <exception cref="ArgumentNullException">Null exception for <paramref name="options"/></exception>
         public FlatAreaConvention(FlatAreaOptions options)
         {
-            Contract.Begin().ArgNull(() => options).Check();
+            Check.ArgNullContract(() => options).Validate();
             
             _folderName = options.RootFolderName;
             _nameDerivationStrategy = options.DeriveFolderName ?? DeriveAreaFolderName;
@@ -34,7 +34,7 @@ namespace Marvin.Web
         /// <exception cref="ArgumentNullException">Null exception for <paramref name="controller"/></exception>
         public void Apply(ControllerModel controller)
         {
-            Contract.Begin().ArgNull(() => controller).Check();
+            Check.ArgNullContract(() => controller).Validate();
 
             var areaName = _nameDerivationStrategy(controller);
             controller.Properties.Add("area", areaName);

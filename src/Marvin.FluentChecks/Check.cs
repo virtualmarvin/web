@@ -1,5 +1,6 @@
 ﻿using Marvin.FluentChecks.Extensions;
 using System;
+using System.Linq.Expressions;
 
 namespace Marvin.FluentChecks
 {
@@ -19,9 +20,9 @@ namespace Marvin.FluentChecks
 
         void AddException(Exception ex);
 
-        ICheck Contract(Func<bool> func, Exception ex);
+        ICheck ContractRule(Func<bool> func, Exception ex);
 
-        ICheck Business(Func<bool> func, string error);
+        ICheck BusinessRule(Func<bool> func, string error);
     }
 
     /// <inheritdoc />
@@ -33,7 +34,7 @@ namespace Marvin.FluentChecks
         private Check() { }
 
         /// <inheritdoc />
-        public bool Passed => (_errors.Any() || _exceptions.Any()) == false;
+        public bool Passed => !(_errors.Any() || _exceptions.Any());
 
         /// <inheritdoc />
         public IEnumerable<string> Errors => _errors;
@@ -67,7 +68,8 @@ namespace Marvin.FluentChecks
             }
         }
 
-        public ICheck Contract(Func<bool> func, Exception ex)
+        /// <inheritdoc />
+        public ICheck ContractRule(Func<bool> func, Exception ex)
         {
             if (func.IsNull() || ex.IsNull())
             {
@@ -81,7 +83,8 @@ namespace Marvin.FluentChecks
             return this;
         }
 
-        public ICheck Business(Func<bool> func, string error)
+        /// <inheritdoc />
+        public ICheck BusinessRule(Func<bool> func, string error)
         {
             if (func.IsNull() || string.IsNullOrWhiteSpace(error))
             {
@@ -96,5 +99,11 @@ namespace Marvin.FluentChecks
         }
 
         public static ICheck Start() => new Check();
+
+        public static ICheck Contract(Func<bool> func, Exception ex) => Start().ContractRule(func, ex);
+
+        public static ICheck ArgNullContract<T>(Expression<Func<T>> func) => Start().ArgNullContract(func);
+
+        public static ICheck Business(Func<bool> func, string error) => Start().BusinessRule(func, error);
     }
 }

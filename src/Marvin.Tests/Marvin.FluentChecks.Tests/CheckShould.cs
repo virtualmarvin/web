@@ -1,4 +1,4 @@
-﻿
+﻿using Marvin.FluentChecks.Extensions;
 
 namespace Marvin.FluentChecks.Tests
 {
@@ -58,16 +58,8 @@ namespace Marvin.FluentChecks.Tests
             check.Exceptions.Should().Contain(exception);
         }
 
-        public static readonly IEnumerable<object[]> PassAsExpectedData = new List<object[]>
-        {
-            new object[] {(string)null, (Exception)null, true },
-            new object[] {"String", (Exception)null, false },
-            new object[] {(string)null, new Exception(), false },
-            new object[] {"String", new Exception(), false },
-        };
-
         [Theory]
-        [MemberData(nameof(PassAsExpectedData))]
+        [MemberData(nameof(TestData.PassAsExpectedData), MemberType = typeof(TestData))]
         public void Pass_AsExpected(string error, Exception exception, bool expected)
         {
             // Arrange
@@ -81,45 +73,85 @@ namespace Marvin.FluentChecks.Tests
             check.Passed.Should().Be(expected);
         }
 
-
-        public static readonly IEnumerable<object[]> ContractWorksAsExpectedData = new List<object[]>
-        {
-            new object[] { () => true, new Exception(), false },
-            new object[] { () => false, new Exception(), true },
-        };
-
         [Theory]
-        [MemberData(nameof(ContractWorksAsExpectedData))]
+        [MemberData(nameof(TestData.ContractWorksAsExpectedData), MemberType = typeof(TestData))]
         public void Contract_WorksAsExpected(Func<bool> func, Exception exception, bool expected)
         {
             // Arrange
             var check = Check.Start();
 
             // Act
-            check.Contract(func, exception);
+            check.ContractRule(func, exception);
 
             // Assert
             check.Passed.Should().Be(expected);
         }
 
-        public static readonly IEnumerable<object[]> BusinessWorksAsExpectedData = new List<object[]>
-        {
-            new object[] { () => true, "String", false },
-            new object[] { () => false, "String", true },
-        };
-
         [Theory]
-        [MemberData(nameof(BusinessWorksAsExpectedData))]
+        [MemberData(nameof(TestData.BusinessWorksAsExpectedData), MemberType = typeof(TestData))]
         public void Business_WorksAsExpected(Func<bool> func, string error, bool expected)
         {
             // Arrange
             var check = Check.Start();
 
             // Act
-            check.Business(func, error);
+            check.BusinessRule(func, error);
 
             // Assert
             check.Passed.Should().Be(expected);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestData.ContractWorksAsExpectedData), MemberType = typeof(TestData))]
+        public void Contract_ReturnsAsExpected(Func<bool> func, Exception exception, bool expected)
+        {
+            // Arrange
+
+            // Act
+            var check = Check.Contract(func, exception);
+
+            // Assert
+            check.Passed.Should().Be(expected);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestData.BusinessWorksAsExpectedData), MemberType = typeof(TestData))]
+        public void Business_ReturnsAsExpected(Func<bool> func, string error, bool expected)
+        {
+            // Arrange
+
+            // Act
+            var check = Check.Business(func, error);
+
+            // Assert
+            check.Passed.Should().Be(expected);
+        }
+
+        [Theory, AutoData]
+        public void ArgNullContract_PassesWithNonNullArument(string option)
+        {
+            // Arrange
+
+            // Act
+            var check = Check.ArgNullContract(() => option);
+
+            // Assert
+            check.Passed.Should().BeTrue();
+        }
+
+        [Fact]
+        public void ArgNullContract_AddsArumentNullExceptionWhenArgIsNull()
+        {
+            // Arrange
+            string option = null;
+
+            // Act
+            var check = Check.ArgNullContract(() => option);
+
+            // Assert
+            check.Passed.Should().BeFalse();
+            check.Exceptions.Should().HaveCount(1);
+            check.Exceptions.First().As<ArgumentNullException>().ParamName.Should().Be(nameof(option));
         }
     }
 }
