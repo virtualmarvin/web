@@ -1,4 +1,4 @@
-﻿using Marvin.Web.Code.Extensions;
+﻿using Marvin.FluentChecks.Extensions;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 

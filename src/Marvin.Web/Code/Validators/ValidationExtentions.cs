@@ -1,8 +1,7 @@
 ﻿using FuncSharp;
+using Marvin.FluentChecks.Extensions;
 using Marvin.Web.Code.Exceptions;
-using Marvin.Web.Code.Extensions;
 using System.Diagnostics.CodeAnalysis;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace Marvin.Web.Code.Validators
 {
