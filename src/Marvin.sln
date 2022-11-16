@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDE932EE-C6E8-42C3-B073-5E692C3EDE47}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\README.md = ..\..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{39FAA96F-3AAA-465A-8D78-8F47CD8B2D5D}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\.github\workflows\LifeBuddyDevelopment.yml = ..\..\.github\workflows\LifeBuddyDevelopment.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6FFFE553-73BB-4977-85CC-06A3EDE750CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marvin.FluentChecks.Tests", "Marvin.Tests\Marvin.FluentChecks.Tests\Marvin.FluentChecks.Tests.csproj", "{431F8368-2107-4AEC-9C24-934462D192A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marvin.Web.Tests", "Marvin.Tests\Marvin.Web.Tests\Marvin.Web.Tests.csproj", "{847B4EA9-9C4D-4898-BDD7-F3F7E9B686F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marvin.FluentChecks", "Marvin.FluentChecks\Marvin.FluentChecks.csproj", "{209421DD-1530-48E4-8F3B-2CACC0FDF735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marvin.Web", "Marvin.Web\Marvin.Web.csproj", "{1F7D8BEB-5CEE-4D8C-B42F-ECA92D6B111D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{431F8368-2107-4AEC-9C24-934462D192A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431F8368-2107-4AEC-9C24-934462D192A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431F8368-2107-4AEC-9C24-934462D192A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431F8368-2107-4AEC-9C24-934462D192A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{847B4EA9-9C4D-4898-BDD7-F3F7E9B686F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847B4EA9-9C4D-4898-BDD7-F3F7E9B686F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847B4EA9-9C4D-4898-BDD7-F3F7E9B686F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847B4EA9-9C4D-4898-BDD7-F3F7E9B686F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{209421DD-1530-48E4-8F3B-2CACC0FDF735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209421DD-1530-48E4-8F3B-2CACC0FDF735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209421DD-1530-48E4-8F3B-2CACC0FDF735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209421DD-1530-48E4-8F3B-2CACC0FDF735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7D8BEB-5CEE-4D8C-B42F-ECA92D6B111D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7D8BEB-5CEE-4D8C-B42F-ECA92D6B111D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7D8BEB-5CEE-4D8C-B42F-ECA92D6B111D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7D8BEB-5CEE-4D8C-B42F-ECA92D6B111D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39FAA96F-3AAA-465A-8D78-8F47CD8B2D5D} = {BDE932EE-C6E8-42C3-B073-5E692C3EDE47}
+		{431F8368-2107-4AEC-9C24-934462D192A5} = {6FFFE553-73BB-4977-85CC-06A3EDE750CD}
+		{847B4EA9-9C4D-4898-BDD7-F3F7E9B686F9} = {6FFFE553-73BB-4977-85CC-06A3EDE750CD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E82188B-7CF9-45FD-B187-E147E0432A26}
+	EndGlobalSection
+EndGlobal

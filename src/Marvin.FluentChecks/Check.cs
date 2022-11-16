@@ -91,7 +91,7 @@ namespace Marvin.FluentChecks
                 return this;
             }
 
-            if (func.Invoke())
+            if (func())
             {
                 AddError(error);
             }
