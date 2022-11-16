@@ -136,13 +136,13 @@ Once this is installed you can record and create some basic front end tests. The
 4. Select the `Lifebuddy.side` test suite from `src\Marvin.Tests\SeleniumIDE`
 5. Run the tests, and you should see all green 😇
 
-## Validators
+## Checks
 
-Validators are able to check for Null arguments and throw an ArgumentNullException, this should 
-be neater than having if statements throughout the code.  The Validators can be strung together
-to check for many exceptions cleaning up the code.
+Checks are able to validate for Contract Exceptions and Business rule errors 
+contact Exceptions are thrown upon Validate() being called and therefore all contract
+exceptions can be caught in one go.
 
-`Validation.Begin().ArgumentNullCheck(object1, name1).ArgumentNullCheck(object2, name2).Check()
+`Check.ArgNullContract(() => object1).ArgNullContract(() => object2).Validate();`
 
 This is based on the following blog https://blog.getpaint.net/2008/12/06/a-fluent-approach-to-c-parameter-validation/
 

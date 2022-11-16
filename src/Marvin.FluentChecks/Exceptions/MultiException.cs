@@ -1,8 +1,9 @@
-﻿using Marvin.FluentChecks.Extensions;
+﻿using FuncSharp;
+using Marvin.FluentChecks.Extensions;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
-namespace Marvin.Web.Code.Exceptions
+namespace Marvin.FluentChecks.Exceptions
 {
     /// <summary>
     /// Represents a collection of errors that occur during application execution
@@ -11,7 +12,6 @@ namespace Marvin.Web.Code.Exceptions
     [Serializable]
     public class MultiException : Exception
     {
-        private const string MESSAGE = "There is at least one validation exception";
         private readonly Exception[] _innerExceptions;
 
         /// <summary>
@@ -37,16 +37,10 @@ namespace Marvin.Web.Code.Exceptions
         /// exception that is the cause of this exception
         /// </summary>
         public MultiException(string? message, Exception? innerException) : base(message, innerException)
-        {
-            if (innerException.IsNotNull())
-            {
-                _innerExceptions = new Exception[1] { innerException };
-            }
-            else 
-            {
-                _innerExceptions = Array.Empty<Exception>();
-            }
-        }
+            => _innerExceptions = innerException.IsNull().Match(
+                t => Array.Empty<Exception>(),
+                f => new Exception[1] { innerException });
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiException"/> class
@@ -67,7 +61,7 @@ namespace Marvin.Web.Code.Exceptions
         /// </summary>
         /// <exception cref="ArgumentNullException" />
         public MultiException(IEnumerable<Exception> innerExceptions)
-            : this(MESSAGE, innerExceptions)
+            : this(Values.VALIDATION_MESSAGE, innerExceptions)
         {
         }
 
@@ -78,7 +72,7 @@ namespace Marvin.Web.Code.Exceptions
         /// </summary>
         /// <exception cref="ArgumentNullException" />
         public MultiException(Exception[] innerExceptions)
-            : this(MESSAGE, (IEnumerable<Exception>)innerExceptions)
+            : this(Values.VALIDATION_MESSAGE, (IEnumerable<Exception>)innerExceptions)
         {
         }
 

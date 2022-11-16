@@ -1,4 +1,4 @@
-﻿using Marvin.Web.Code.Extensions;
+﻿using Marvin.FluentChecks.Extensions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;

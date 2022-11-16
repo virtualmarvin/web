@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Marvin.Web.Code.Extensions;
+namespace Marvin.FluentChecks.Extensions;
 
 /// <summary>
 /// Useful object extensions

@@ -1,5 +1,6 @@
 ﻿using FuncSharp;
-using Marvin.Web.Code.Validators;
+using Marvin.FluentChecks;
+using Marvin.FluentChecks.Extensions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Razor;
 
@@ -44,10 +45,10 @@ namespace Marvin.Web
             ViewLocationExpanderContext context,
             IEnumerable<string> viewLocations)
         {
-            Validation.Begin()
-                .ArgumentNullCheck(context, nameof(context))
-                .ArgumentNullCheck(viewLocations, nameof(viewLocations))
-                .Check();
+            Check
+                .ArgNullContract(() => context)
+                .ArgNullContract(() => viewLocations)
+                .Validate();
 
             var controllerDescriptor = context.ActionContext.ActionDescriptor as ControllerActionDescriptor;
             var areaName = controllerDescriptor?.Properties["area"] as string;
